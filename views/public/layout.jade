@@ -1,0 +1,92 @@
+doctype html
+html(ng-app="app", ng-controller="router" ng-cloak)
+	head
+		base(href="/")
+		//TITULO Y METAS
+		block title
+		meta(name="author",content="PVDI VZLA")
+		meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+		meta(http-equiv="X-UA-Compatible",content="IE=edge")
+		link(rel='shortcut icon' type='image/x-icon' href='/images/design/favicon.ico')
+		link(rel="apple-touch-icon" sizes="76x76" href="/images/design/apple-icon-76x76.png")
+		link(rel="manifest" href="/manifest.json")
+		
+		// DEPENDENCIAS CSS
+		link(rel="stylesheet",href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css")
+		link(rel="stylesheet",href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap-theme.min.css")
+		//link(rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css")
+		//link(rel="stylesheet" href="/node_modules/angular-material/angular-material.css")
+		link(rel="stylesheet" href="/angular-material/angular-material.css")
+		link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+		link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic")
+		// DEPENDENCIAS CSS
+
+		// STYLES
+		link(rel="stylesheet", href="/styles/slick-theme.css")
+		link(rel="stylesheet", href="/styles/slick.css")
+		link(rel="stylesheet", href="/styles/style.css")
+		// STYLES END
+
+	body(class="body-public")
+		
+		// DEPENDENCIAS JS CDN
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js")
+		//script(src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async)
+		//script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js")
+		//script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js")
+		//script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js")
+		//script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js")
+		//script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js")
+
+		//script(src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js")
+		script(src="/angular-material/angular.js")
+		script(src="/angular-material/angular-aria.js") 
+		script(src="/angular-material/angular-animate.js") 
+		script(src="/angular-material/angular-material.js") 
+		script(src="//cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.js")
+		script(src="/angular-trix/dist/angular-trix.min.js")
+		script(src="https://code.angularjs.org/1.4.5/i18n/angular-locale_es-es.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/is_js/0.8.0/is.min.js")
+		script(src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js")
+		script(src="https://use.fontawesome.com/62d3e52a41.js")
+		script(src="/angular-material-datetimepicker/js/angular-material-datetimepicker.js")
+		//script(src="/onesignal.js")
+				
+		// DEPENDENCIAS JS CDN
+
+		// SCRIPTS
+		script(src="/js/dependencies/sails.io.js")
+		script(src="/js/dependencies/MediaStreamRecorder.js")
+		script(src="/js/dependencies/adapter.js")
+		script(src="/js/dependencies/angular.js")
+		script(src="/js/dependencies/gumadapter.js")
+		script(src="/js/dependencies/slick.js")
+		script(src="/js/dependencies/slick.min.js")
+		script(src="/js/tools/design/DateFieldSettings.js")
+		script(src="/js/tools/design/MenuMoreOptions.js")
+		script(src="/js/tools/design/Notifications.js")
+		script(src="/js/tools/design/RemoveErrorShadow.js")
+		script(src="/js/tools/design/SearchFieldSettings.js")
+		script(src="/js/tools/design/SelectFieldSettings.js")
+		script(src="/js/tools/design/Window.js")
+		script(src="/js/tools/design/confirmWindow.js")
+		script(src="/js/tools/operational/GenerateRandomCode.js")
+		script(src="/js/tools/operational/MenuController.js")
+		script(src="/js/tools/operational/ReportMessage.js")
+		script(src="/js/tools/operational/SocketRedirect.js")
+		script(src="/js/tools/operational/ValidateData.js")
+		script(src="/js/tools/operational/scrollLogo.js")
+		script(src="/js/public/controllers/Home/Home.js")
+		script(src="/js/public/controllers/Router.js")
+		// SCRIPTS END
+		
+		//FLOTANTES
+		block floats
+
+		//BODY
+		block body
+
+		//FLOTANTES FOOTER
+		block footer

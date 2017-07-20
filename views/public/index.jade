@@ -1,0 +1,44 @@
+extends ./layout
+
+block title
+	title Test
+
+block floats
+	div(class="reportMessagesContainer",ng-controller="reportMessage")
+		div(class="message container-fluid notification-vd {{message.animationClass}} {{message.class}}",id="{{message.id}}",style="display:{{message.display}};",ng-repeat="message in data.messages", ng-click="data.deleteMessage(message.id)")
+				div(class="content")
+					div(ng-repeat="content in message.content") {{content}}
+	div(class="hidden-sm hidden-md hidden-lg backScreenAside")
+	ul(class="confirmWindow")
+		li(style="padding:20px 0px 10px 0px;")
+			i(class="fa fa-exclamation-circle",style="color:red;font-size:100px;")
+		li(class="question")
+		li(class="container-fluid")
+			div(class="row")
+				div(class="col-xs-6")
+					div(class="confirmButton")
+				div(class="col-xs-6")
+					div(class="cancelButton")
+	div(class="responShow openMenu" onclick="menuActions(false)")
+		i(class="material-icons") menu
+block body
+	section(class="viewsContainer")
+		section(class="view",id="home",ng-if="data.views.home.active",ng-class="data.views.home.active ? 'fadeInFromTop' : ''")
+			div(ng-controller="home")
+				div(class="form-load" ng-if="data.front.form.active")
+					i(class="fa fa-circle-o-notch fa-spin fa-3x fa-fw")
+				div(class="col-md-4 col-md-push-4 formulario")
+					div(class="title") Inicio sesión
+					form(class="form-login" ng-submit="data.front.form.submit()")
+						md-input-container(class="md-block")
+							input(type="text" placeholder="Correo electrónico" id="{{data.front.form.fields.email.id}}" ng-model="data.front.form.fields.email.value" style="width: 90%")
+						md-input-container(class="md-block")
+							input(type="password" placeholder="Contraseña" id="{{data.front.form.fields.password.id}}" ng-model="data.front.form.fields.password.value" style="width: 90%")
+						md-button(class="md-raised md-primary boton" ng-click="data.front.form.submit()") Entrar
+						button(class="hidden")
+block footer
+	
+					
+					
+
+	

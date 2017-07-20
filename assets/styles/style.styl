@@ -1,0 +1,3684 @@
+@import "nib"
+@import "nib/vendor"
+@import "nib/gradients"
+/*@font-face
+   font-family helloAi
+   src url(/fonts/HelloAli.ttf)
+@font-face
+   font-family helvetica-world
+   src url(/fonts/Helvetica-World.ttf)
+@font-face
+	font-family candara
+	src url(/fonts/CANDARA.TTF)
+*/
+
+
+vendor-prefixes ?= webkit moz ms o official
+
+firstColor = #EB4739
+firstColorLight= #EAC051
+successColor = rgba(27,148,104,1)
+dangerColor = rgba(193,33,16,1)
+azul = rgb(0, 120, 191)
+azul-claro = rgba(0, 120, 191,0.5)
+gris= #59575F
+naranja=#C8520F
+claro= #EAC051
+
+//////
+sombraPanels= 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+sombraImageCourse= 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22)
+
+[ng\:cloak]
+[ng-cloak]
+[data-ng-cloak]
+[x-ng-cloak]
+.ng-cloak
+.x-ng-cloak
+	display none
+//ESTILOS GENERALES
+*
+	//font-family helloAi, "sans-serif"
+	font-family 'Roboto', sans-serif
+:focus
+	outline: none;
+
+.md-dialog-container
+	height 100vh !important
+.md-dialog.dtp
+	font-size 16px !important
+body.noScroll
+	overflow-y hidden
+body, html
+	background white
+	height initial !important
+	position relative
+	//background rgba(0,0,0,.030)
+
+body.body_inter
+	background white
+a,a:hover,a:focus,a:visited,a:active
+	text-decoration none
+	color rgba(0,0,0,.7)
+	outline none
+	outline-offset none
+
+.separator
+	width 100%
+	height 1px
+	margin 0 auto
+
+ul
+	padding 0px
+	margin 0px
+	list-style none
+
+.backScreen
+	background rgba(0,0,0,.7)
+	position fixed
+	height 100%
+	width 100%
+	display none
+	z-index 20
+	top 0
+	bottom 0
+	left 0
+	right 0
+
+.listControls
+	list-style none
+	padding 0px
+	margin-bottom 0px
+	text-align center
+	color rgba(0,0,0,.6)
+
+	.control
+		font-size 22px
+		cursor pointer
+		transition color .2s
+
+	.control:hover
+		color firstColor
+
+//VIEWS
+.viewsContainer
+	//margin-top 50px
+
+	.view
+		display none
+
+// MENU NAVBAR
+.navbar-main
+	ul
+		li.md-nav-item
+			margin 0
+			margin-left 0 !important
+			a.md-button._md-nav-button
+				width 100%
+				display block
+				margin 0px auto
+// MENU SIDENAV
+@keyframes moveSideNav
+	0%
+		transform translateX(-110%)
+	100%
+		transform translateX(0%)
+
+@keyframes backAnimation
+	from
+		background-color rgba(0,0,0,0)
+	to
+		background-color rgba(0,0,0,0.5)
+
+@keyframes hideSideNav
+	0%
+		transform translateX(0%)
+
+	100%
+		transform translateX(-110%)
+
+@keyframes nonebackAnimation
+	from
+		background-color rgba(0,0,0,0.5)
+	to
+		background-color rgba(0,0,0,0)
+
+
+div.menuTitleSearchContainer
+	width 100%
+	padding 0 2.5% 20px
+	font-size 24px
+	padding-top 30px
+	display none
+	background-color rgb(60, 16, 83)
+	color #f3f3f3
+
+	i.iconMenu
+		width 5%
+		display inline-block
+		cursor pointer
+
+	div.title
+		width 60%
+		margin 0
+		font-size 24px
+		display inline-block
+
+	i.iconSearch
+		width 5%
+		float right
+		display inline-block
+		cursor pointer
+
+div.menuTitleSearchContainer.title.showMenuContainer
+		display block
+div.showMenuContainer
+	display block
+
+	div.sideNav
+		display block
+		animation moveSideNav 0.2s
+
+	div.backContainer
+		background-color rgba(0,0,0,0.5)
+		animation backAnimation 0.7s
+		animation-duration: 0.9s;
+		animation-iteration-count: 1;
+		animation-direction: alternate;
+		animation-timing-function: ease-in-out;
+
+div.hideMenuContainer
+
+	div.sideNav
+		animation hideSideNav 0.2s
+		transform translateX(-110%)
+
+	div.backContainer
+		transition all 0.2s ease
+		opacity 0
+
+.sideNavMenuContainer
+	width 100%;
+	height 100vh
+	position fixed
+	top 0
+	left 0
+	z-index 2
+	display none
+	color: rgba(0,0,0,0.54);
+
+	div.sideNav
+		width 20%
+		background-color #fff
+		float left
+		height 100vh
+		display none
+
+		div.upSideNav
+			padding 18px 12px 12px
+			background-color rgb(114, 36, 108)
+			background -webkit-linear-gradient(rgb(60, 16, 83), rgb(114, 36, 108))
+			background -o-linear-gradient(rgb(60, 16, 83), rgb(114, 36, 108))
+			background -moz-linear-gradient(rgb(60, 16, 83), rgb(114, 36, 108))
+			background linear-gradient(rgb(60, 16, 83), rgb(114, 36, 108))
+			color: rgba(255,255,255,0.7);
+
+			div.pictureSideNavContainer
+				height 80px
+				width 80px
+				border-radius 50%;
+				background-position 50%
+				background-size cover
+			div.nameEmailContainer
+				margin-top 25px
+				font-size 15px
+				div.nameMenu
+					font-weight 500
+				div.emailMenu
+					font-weight 400
+
+		div.downSideNav
+			min-height 200px
+			padding 0 12px
+			ul
+				li
+					cursor pointer
+					height 46px
+					line-height 46px
+					a
+						width 100%
+						height 100%
+						display block
+						i
+							display inline-block
+							margin-left 0px;
+							font-size 20px
+							transition color 1s ease
+
+						div.menu-item-sidenav
+							display inline-block
+							margin-left 10px
+							font-size 15px
+							font-weight 500
+							transition color 1s ease
+
+				li:hover
+					a
+						i
+						div.menu-item-sidenav
+							color: rgb(114, 36, 108)
+
+				/*li.lastItemSideNav*/
+
+	div.backContainer
+		width 80%
+		float right
+		height 100vh
+		transition background 2s ease
+
+// TABS STYLES
+
+.md-tab
+	span
+		font-weight 500
+		font-size 1.1rem
+
+
+
+
+
+//CONTAINERS STYLES
+.container1
+	background white
+	padding 10px
+	border-radius 2px
+	box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+	font-size 18px
+	margin-bottom 10px
+	align-items center
+	margin-top 15px
+	margin-left auto
+	margin-right auto
+	text-align left
+	position relative
+
+	.title
+		width 100%
+		border-radius 2px
+		font-size 1.3em
+		text-align left
+		margin-bottom 5px
+		cursor default
+		display flex
+		align-items center
+		color azul
+		i
+			font-size 20px
+			margin-right 10px
+	.title1
+		color firstColor
+
+	.sectionTitle
+		width 100%
+		margin 40px 0px 20px 0px
+		cursor default
+
+		.separator
+			width 100%
+			height 100%
+			position relative
+			text-align center
+
+			.roundTextContainer
+				border-radius 50%
+				background firstColor
+				display inline-flex
+				align-items center
+				text-align center
+				position relative
+				z-index 4
+
+				.icon
+					font-size 30px
+					width 30px
+					height 30px
+					margin 0 auto
+					color rgba(0,0,0,.15)
+
+				.text
+					color white
+					position absolute
+					font-size 30px
+					z-index 4
+					margin 4px auto 0px auto
+					top 0
+					bottom 0
+					left 0
+					right 0
+
+			.line
+				width 100%
+				background firstColor
+				height 2px
+				z-index 2
+				margin auto
+				position absolute
+				top 0
+				bottom 0
+
+		.title
+			width 100%
+			text-align center
+			color firstColor
+			font-size 17px
+			margin 0px auto
+
+			.text
+				margin 0px auto
+
+.container2
+	border-radius 2px
+	background rgba(255,255,255,1)
+	box-shadow 0px 2px 5px 1.5px rgba(0,0,0,.1)
+	margin-top 7.5px
+	padding 15px
+
+.roundContainer
+	background white
+	padding 3px
+	border-radius 50%
+	box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+	margin 0 auto
+	margin-bottom 10px
+	align-items center
+	margin-top 15px
+	text-align center
+
+.viewContainer
+	display none
+
+.viewContainer.active
+	display block !important
+
+.listMode .elementsContainer
+	background white
+	border-radius 2px
+	font-size 18px
+	text-align left
+	color rgba(0,0,0,.6)
+	overflow hidden
+	cursor pointer
+	z-index 4
+	list-style none
+	padding 0px
+	margin-top 15px
+	margin-bottom 0px
+	width 100%
+
+	.element
+		padding 5px
+		transition background .2s,color .2s
+
+		.itemContainer
+			list-style none
+			padding 0px
+			margin-bottom 0px
+			display flex
+			align-items center
+
+			.item
+				display inline-block
+				padding 5px 0px
+
+	.element:hover
+		background firstColor
+		color white
+
+.squareMode .elementsContainer
+	background white
+	border-radius 2px
+	font-size 15px
+	text-align left
+	color rgba(0,0,0,.6)
+	cursor pointer
+	z-index 4
+	list-style none
+	padding 0px
+	margin-top 15px
+	margin-bottom 0px
+	width 100%
+	display block
+
+	.element
+		margin-top 15px
+		padding 5px
+		box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+		transition box-shadow .2s
+		border 1px solid rgba(200, 82, 15,0.8)
+		.itemContainer
+			list-style none
+			padding 0px
+			margin-bottom 0px
+
+			.item
+				padding 5px 0px
+				display block
+
+	.element:hover
+		box-shadow 0px 2px 3px 1px rgba(0,0,0,.3)
+
+.searchMode .elementsContainer
+	background white
+	border-radius 2px
+	box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+	font-size 18px
+	text-align left
+	color rgba(0,0,0,.6)
+	overflow-y auto
+	overflow-x hidden
+	cursor pointer
+	z-index 4
+	list-style none
+	padding 0px
+	margin-bottom 0px
+	width 100%
+	height 300px
+	display none
+
+	.element
+		padding 5px
+		transition background .2s,color .2s
+
+		.itemContainer
+			list-style none
+			padding 0px
+			margin-bottom 0px
+			display flex
+			align-items center
+
+			.item
+				display inline-block
+				padding 5px 0px
+
+	.element:hover
+		background firstColor
+		color white
+
+.PermissionMode .elementsContainer
+	background white
+	border-radius 2px
+	font-size 18px
+	text-align left
+	color rgba(0,0,0,.6)
+	overflow-x hidden
+	cursor default
+	z-index 4
+	list-style none
+	padding 0px 0px 60px 0px
+	margin-top 15px
+	margin-bottom 0px
+	width 100%
+	max-height 500px
+
+	.element
+		padding 5px
+
+		.itemContainer
+			list-style none
+			padding 0px
+			margin-bottom 0px
+			display flex
+			align-items center
+
+			.item
+				display inline-block
+				padding 5px 0px
+
+.announcementMode
+	background white
+	font-size 18px
+	text-align left
+	color rgba(0,0,0,.6)
+	overflow hidden
+	cursor default
+	z-index 4
+	padding 0px
+	margin-top 0px
+	margin-bottom 0px
+	width 100%
+
+	.header
+		list-style none
+		padding 5px
+
+		.itemContainer
+			padding 0px
+			margin-bottom 0px
+			display flex
+			align-items center
+
+			.item
+				list-style none
+				display inline-block
+				padding 5px 0px
+
+	.body
+		list-style none
+		padding 5px
+
+		.itemContainer
+			padding 0px
+			margin-bottom 0px
+			display flex
+			align-items center
+
+			.item
+				list-style none
+				display inline-block
+				padding 5px 0px
+
+.questionMode
+	background white
+	font-size 18px
+	text-align left
+	color rgba(0,0,0,.6)
+	overflow hidden
+	cursor default
+	z-index 4
+	padding 0px
+	margin-top 0px
+	margin-bottom 0px
+	width 100%
+
+	.header
+		list-style none
+		padding 5px
+
+		.itemContainer
+			padding 0px
+			margin-bottom 0px
+			display flex
+			align-items center
+
+			.item
+				list-style none
+				display inline-block
+				padding 5px 0px
+
+	.body
+		list-style none
+		padding 5px
+
+		.itemContainer
+			padding 0px
+			margin-bottom 0px
+			display flex
+			align-items center
+
+			.item
+				list-style none
+				display inline-block
+				padding 5px 0px
+
+//SCROLLBAR
+::-webkit-scrollbar
+	width 8px
+
+::-webkit-scrollbar-track
+	-webkit-box-shadow none
+	background rgba(0,0,0,.2)
+
+::-webkit-scrollbar-thumb
+	background rgba(0,0,0,.6)
+
+//IMAGES
+.squareImageContainer
+	box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+	background white
+	padding 1px
+
+.squareImage
+	margin 0 auto
+	background-position 50%
+	background-size cover
+	width 100%
+	height 100%
+
+	.deleteContainer
+		width 100%
+		height 100%
+		cursor pointer
+		position relative
+		display block
+		padding-top 30px
+		transition background .2s, color .2s
+
+		.icon
+			display none
+			margin 0px auto
+			font-size 30px
+			position absolute
+			left 0
+			right 0
+
+	.deleteContainer:hover
+		background rgba(0,0,0,.4)
+		color white
+
+.addImagePackageContainer
+	border-style dashed
+	border-color rgba(0,0,0,.4)
+	color rgba(0,0,0,.7)
+	margin 30px auto
+	cursor pointer
+	text-align center
+	padding-top 22.5px
+	transition background .2s, color .2s
+
+	.text
+		font-size 18px
+
+.addImagePackageContainer:hover
+	background firstColor
+	color white
+
+.roundImage
+	box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+	margin 0 auto
+	background-position 50%
+	background-size cover
+
+img
+	vertical-align middle
+
+//ICONS
+i
+	vertical-align middle
+	text-align center
+
+.iconContainer
+	border-radius 50%
+	text-align center
+	cursor pointer
+	display inline-flex
+	align-items center
+	color rgba(0,0,0,.6)
+
+.iconContainer.firstColor,.iconContainer.secondColor,.iconContainer.successColor,.iconContainer.dangerColor
+	transition background .2s,color .2s
+
+.iconContainer.firstColor:hover
+	background firstColor
+	color white
+
+.iconContainer.secondColor:hover
+	background rgba(0,0,0,.5)
+	color white
+
+.iconContainer.successColor:hover
+	background successColor
+	color white
+
+.iconContainer.dangerColor:hover
+	background dangerColor
+	color white
+
+//MORE OPTIONS
+//FORMS DESIGNS
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button
+	-webkit-appearance none
+    -moz-appearance none
+    -ms-appearance none
+    -o-appearance none
+	appearance none
+	margin 0
+
+.optionsContainer
+	background white
+	border-radius 2px
+	box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+	font-size 15px
+	text-align left
+	color rgba(0,0,0,.6)
+	position absolute
+	cursor pointer
+	z-index 5
+	list-style none
+	padding 0px
+	margin-bottom 0px
+	width 100%
+	display none
+	overflow-y auto
+	overflow-x hidden
+	max-height 300px
+
+	.option
+		padding 8px
+		transition background .2s,color .2s
+
+	.option:hover
+		background firstColor
+		color white
+
+//REPORT MESSAGES
+.reportMessagesContainer
+	position fixed !important
+	//width 100%
+	//width 22.5%
+	top 13%
+	//left 35%
+	//left 72.5%
+	z-index 31 !important
+	display table
+	right 2%
+	.message
+		display none
+		margin-bottom 5px
+		border-radius 2px
+		box-shadow 0px 0px 7px 1px rgba(0,0,0,.5)
+		cursor default
+		.messageTitle
+			padding 3px 0px 3px 0px
+			text-align center
+			background rgba(0,0,0,.5)
+			font-size 17px
+			border-radius 2px 2px 0px 0px
+			color white
+			margin-bottom 5px
+
+		.messageContent
+			color white
+			font-size 15px
+			padding 2px 0px 2px 0px
+
+			.vignette
+				border-radius 50%
+				width 8px
+				height 8px
+				margin-top 2px
+				background rgba(0,0,0,.4)
+				margin-right 5px
+				display inline-block
+
+		.buttonMessage
+			width 75px
+			padding 3px 0px 3px 0px
+			color white
+			border-radius 2px
+			margin 10px auto
+			text-align center
+			cursor pointer
+			transition background 0.2s
+
+		.buttonMessage:hover
+			background rgba(0,0,0,.3)
+
+//NOTIFICATION MESSAGES
+.notificationMessagesContainer
+	position fixed !important
+	width 300px
+	top auto
+	bottom 10%
+	left 5%
+	z-index 10 !important
+	display none
+
+	.elementsContainer
+		box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+		background white
+		border-radius 2px
+		font-size 13px
+		text-align left
+		color rgba(0,0,0,.6)
+		overflow hidden
+		cursor default
+		z-index 4
+		list-style none
+		padding 10px
+		margin-top 15px
+		margin-bottom 0px
+		width 100%
+		display flex
+		align-items center
+		transition box-shadow .2s
+		border 1px solid naranja
+		.fa-bell
+			color naranja
+		.element
+			margin auto 5px
+			a
+				color azul
+	.elementsContainer:hover
+		box-shadow 0px 2px 3px 1px rgba(0,0,0,.3)
+
+//WINDOWS
+.window
+	position fixed !important
+	width 65%
+	height 90%
+	z-index 15 !important
+	box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+	background white
+	list-style none
+	padding 10px
+	margin auto
+	overflow auto
+	display none
+	top 0
+	left 0
+	right 0
+	bottom 0
+
+	.question
+		padding 20px 10px
+		font-size 20px
+		color rgba(0,0,0,.6)
+		cursor default
+		margin-bottom 20px
+
+	.confirmButton
+		display inline-block
+		color rgba(0,0,0,.6)
+		width 70%
+		margin 10px auto
+		padding 5px
+		font-size 20px
+		border-radius 1.5px
+		cursor pointer
+		font-weight bold
+		transition background .2s, color .2s
+
+	.confirmButton:hover
+		background successColor
+		color white
+
+	.cancelButton
+		display inline-block
+		color rgba(0,0,0,.6)
+		width 70%
+		margin 10px auto
+		padding 5px
+		font-size 20px
+		border-radius 1.5px
+		cursor pointer
+		font-weight bold
+		transition background .2s, color .2s
+
+	.cancelButton:hover
+		background dangerColor
+		color white
+
+.confirmWindow
+	position fixed !important
+	width 50%
+	height 50%
+	z-index 30 !important
+	box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+	background white
+	list-style none
+	padding 0px 0px 20px 0px
+	margin auto
+	text-align center
+	overflow auto
+	display none
+	top 0
+	left 0
+	right 0
+	bottom 0
+	img
+		width 100px
+		height auto
+		margin 0px auto
+	.question
+		padding 20px 10px
+		font-size 20px
+		color rgba(0,0,0,.6)
+		cursor default
+		margin-bottom 20px
+
+	.confirmButton
+		display inline-block
+		color rgba(0,0,0,.6)
+		width 70%
+		margin 10px auto
+		padding 5px
+		font-size 20px
+		border-radius 1.5px
+		cursor pointer
+		font-weight bold
+		transition background .2s, color .2s
+
+	.confirmButton:hover
+		background successColor
+		color white
+
+	.cancelButton
+		display inline-block
+		color rgba(0,0,0,.6)
+		width 70%
+		margin 10px auto
+		padding 5px
+		font-size 20px
+		border-radius 1.5px
+		cursor pointer
+		font-weight bold
+		transition background .2s, color .2s
+
+	.cancelButton:hover
+		background dangerColor
+		color white
+
+//ANIMATIONS
+.shadowInError
+	//box-shadow 0px 0px 5px 1px rgba(204,53,53,0.9) !important
+	border 1px solid rgba(255,69,59,1) !important
+	animation shadowInError 0.3s
+
+@keyframes shadowInError
+	0%
+		border 1px solid rgba(255,69,59,0)
+	100%
+		border 1px solid rgba(255,69,59,1)
+
+.fadeAndRotateYIn
+	opacity 1
+	transform rotateY(360deg)
+	animation fadeAndRotateYIn .75s
+
+@keyframes fadeAndRotateYIn
+	0%
+		transform rotateY(180deg)
+		opacity 0
+	100%
+		transform rotateY(360deg)
+		opacity 1
+
+.fadeInFromTop
+	display block !important
+	margin-top 0px
+	opacity 1
+	animation fadeInFromTop .2s
+
+@keyframes fadeInFromTop
+	0%
+		margin-top -25px
+		opacity 0
+	100%
+		margin-top 0px
+		opacity 1
+
+.fadeOutFromTop
+	display block !important
+	margin-top -25px
+	opacity 0
+	animation fadeOutFromTop 0.2s
+
+@keyframes fadeOutFromTop
+	0%
+		margin-top 0px
+		opacity 1
+	100%
+		margin-top -25px
+		opacity 0
+
+.fadeInFromLeft
+	display block !important
+	margin-left 0px
+	opacity 1
+	animation fadeInFromLeft 0.2s
+
+@keyframes fadeInFromLeft
+	0%
+		margin-left -25px
+		opacity 0
+	100%
+		margin-left 0px
+		opacity 1
+
+.fadeOutFromLeft
+	margin-left -25px
+	opacity 0
+	animation fadeOutFromLeft 0.2s
+
+@keyframes fadeOutFromLeft
+	0%
+		margin-left 0px
+		opacity 1
+	100%
+		margin-left -25px
+		opacity 0
+
+.fadeInFromRight
+	display block !important
+	margin-right 0px
+	opacity 1
+	animation fadeInFromRight 0.2s
+
+@keyframes fadeInFromRight
+	0%
+		margin-right -25px
+		opacity 0
+	100%
+		margin-right 0px
+		opacity 1
+
+.fadeOutFromRight
+	margin-right -25px
+	opacity 0
+	animation fadeOutFromRight 0.2s
+
+@keyframes fadeOutFromRight
+	0%
+		margin-right 0px
+		opacity 1
+	100%
+		margin-right -25px
+		opacity 0
+
+.fadeInFromBottom
+	display block !important
+	margin-top 0px
+	opacity 1
+	animation fadeInFromBottom .2s
+
+@keyframes fadeInFromBottom
+	0%
+		margin-top 25px
+		opacity 0
+	100%
+		margin-top 0px
+		opacity 1
+
+.fadeOutFromBottom
+	margin-top 25px
+	opacity 0
+	animation fadeOutFromBottom .2s
+
+@keyframes fadeOutFromBottom
+	0%
+		margin-top 0px
+		opacity 1
+	100%
+		margin-top 25px
+		opacity 0
+
+//ESTILOS FOOTER
+footer
+	background rgba(230,230,230,1)
+	color rgba(0,0,0,.7)
+	margin-top 60px
+	padding-top 60px
+	padding-bottom 15px
+
+	a
+		color rgba(0,0,0,.7)
+
+	a:hover,a:visited
+		color rgba(0,0,0,.7)
+
+	ul
+		list-style none
+
+		li
+			display inline
+
+	.socialIconsContainer
+		padding-top 15px
+
+	.containerSocialLinkFacebook,
+	.containerSocialLinkTwitter,
+	.containerSocialLinkGoogle,
+	.containerSocialLinkYoutube
+		display inline-block
+
+	.containerSocialIconFacebook
+		margin-right 10px
+		width 70px
+		height 70px
+		border-radius 50%
+		padding-top 22px
+		background rgba(0,0,0,.4)
+
+	.containerSocialIconFacebook.overIn
+		background #3a5795
+		animation containerSocialIconFacebookOverIn 0.5s
+
+	@keyframes containerSocialIconFacebookOverIn
+		0%
+			background rgba(0,0,0,.4)
+		100%
+			background #3a5795
+			transform rotateY(360deg)
+
+	.containerSocialIconFacebook.overOut
+		background rgba(0,0,0,.4)
+		animation containerSocialIconFacebookOverOut 0.5s
+
+	@keyframes containerSocialIconFacebookOverOut
+		0%
+			background #3a5795
+		100%
+			background rgba(0,0,0,.4)
+			transform rotateY(360deg)
+
+	.containerSocialIconTwitter
+		margin-right 10px
+		width 70px
+		height 70px
+		border-radius 50%
+		padding-top 22px
+		background rgba(0,0,0,.4)
+
+	.containerSocialIconTwitter.overIn
+		background rgba(85,172,238,1)
+		animation containerSocialIconTwitterOverIn 0.5s
+
+	@keyframes containerSocialIconTwitterOverIn
+		0%
+			background rgba(0,0,0,.4)
+		100%
+			background rgba(85,172,238,1)
+			transform rotateY(360deg)
+
+	.containerSocialIconTwitter.overOut
+		background rgba(0,0,0,.4)
+		animation containerSocialIconTwitterOverOut 0.5s
+
+	@keyframes containerSocialIconTwitterOverOut
+		0%
+			background rgba(85,172,238,1)
+		100%
+			background rgba(0,0,0,.4)
+			transform rotateY(360deg)
+
+	.containerSocialIconGoogle
+		margin-right 10px
+		width 70px
+		height 70px
+		border-radius 50%
+		padding-top 22px
+		background rgba(0,0,0,.4)
+
+	.containerSocialIconGoogle.overIn
+		background rgba(211,72,54,1)
+		animation containerSocialIconGoogleOverIn 0.5s
+
+	@keyframes containerSocialIconGoogleOverIn
+		0%
+			background rgba(0,0,0,.4)
+		100%
+			background rgba(211,72,54,1)
+			transform rotateY(360deg)
+
+	.containerSocialIconGoogle.overOut
+		background rgba(0,0,0,.4)
+		animation containerSocialIconGoogleOverOut 0.5s
+
+	@keyframes containerSocialIconGoogleOverOut
+		0%
+			background rgba(211,72,54,1)
+		100%
+			background rgba(0,0,0,.4)
+			transform rotateY(360deg)
+
+	.containerSocialIconYoutube
+		margin-right 10px
+		width 70px
+		height 70px
+		border-radius 50%
+		padding-top 22px
+		background rgba(0,0,0,.4)
+
+	.containerSocialIconYoutube.overIn
+		background #cc181e
+		animation containerSocialIconYoutubeOverIn 0.5s
+
+	@keyframes containerSocialIconYoutubeOverIn
+		0%
+			background rgba(0,0,0,.4)
+		100%
+			background #cc181e
+			transform rotateY(360deg)
+
+	.containerSocialIconYoutube.overOut
+		background rgba(0,0,0,.4)
+		animation containerSocialIconYoutubeOverOut 0.5s
+
+	@keyframes containerSocialIconYoutubeOverOut
+		0%
+			background #cc181e
+		100%
+			background rgba(0,0,0,.4)
+			transform rotateY(360deg)
+
+//MEDIA QUERIES
+/*PWA RESPONSIVE*/
+@media screen and (min-width: 981px)
+
+	div.navBarmenu
+		display none
+	div.menuTitleSearchContainer
+		display block
+
+@media screen and (max-width: 980px)
+	div.navBarmenu
+		display block
+	div.menuTitleSearchContainer
+		display none
+
+
+@media (max-width: 767px)
+	#calendar
+		height 310px
+		width 285px
+		font-size 18px
+
+	.image1 .homepageTitle
+		font-size 24px
+
+	header .headerTitle
+		font-size 18px
+
+	header .actualSection
+		margin-left 0px
+
+	.window
+		width 100%
+
+	.confirmWindow
+		width 100%
+
+		.confirmButton,.cancelButton
+			width 90%
+
+	.reportMessagesContainer
+		width 100%
+		top auto
+		bottom 0px
+		left 0px
+
+		.message
+			margin-bottom 0px
+			border-radius 0px
+
+			.messageTitle
+				border-radius 0px
+
+	.notificationMessagesContainer
+		width 100%
+		top 10%
+		left 0
+		bottom auto
+
+		.elementsContainer
+			border-radius 0px
+
+	.principalSectionContainer
+		margin-left 0px
+
+	aside
+		box-shadow none
+
+.notification-vd
+	width 350px
+	padding 10px
+	color white
+	text-align center
+.notification-error
+	background #ff453b
+.notification-success
+	background azul
+.backScreen-window
+	background rgba(0,0,0,0.2)
+	width 100%
+	height 100vh
+	position fixed
+	z-index 2
+	display block
+	top 0
+.windowModal
+	width 90%
+	margin 5% 0px 0px 5%
+	background white
+	border-radius 2px
+	position fixed
+	z-index 3
+	.title
+		padding 10px 0px 10px 10px
+		font-size 1.3em
+	.tabla
+		.header-table
+			.title-header
+				font-size 1.2em
+				text-align center
+				padding 5px 0px
+		.row-table
+			display table
+			width 100%
+			border-top 1px solid firstColor
+			.col-table
+				display table-cell
+				vertical-align middle
+				float none
+				div
+					margin 0px 3px
+					display inline-block
+					float left
+.visible
+	display block
+.novisible
+	display none
+.modal-certificado
+	width:1130px;
+	background white;
+	margin 0px auto
+	z-index 12
+	position relative
+	margin-top -400px
+	padding-bottom 10px
+	button
+		margin 10px auto
+		display block
+		i
+			margin-top -3px
+			margin-right 5px
+@media(max-width: 480px)
+	input.input-form
+		padding 2px 5px
+		font-size 1.1em
+	div.detailCourseArea
+		div.modal-upload
+			.content
+				width 100% !important
+				.button
+					padding 18px 12px 10px 12px !important
+					span
+						font-size 17px !important
+				.upl
+					padding 10px 12px 10px 12px !important
+
+				.types_files
+					span
+						img
+							width 20px !important
+							padding-bottom 5px
+				.info-file
+					.info
+						div.icon
+							img
+								width 50px !important
+
+.boton
+	display block
+	margin 10px auto
+.formulario
+	padding 10px 15px
+	box-shadow 0px 0px 3px 2px rgba(0,0,0,.2)
+	.title
+		text-align center
+		margin 10px 0px
+		font-size 1.2em
+	p
+		padding 0 5%
+		font-size 11px
+md-input-container
+	label
+		font-weight 200
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label, md-input-container:not(.md-input-invalid).md-input-focused label, md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused md-icon, md-input-container:not(.md-input-invalid).md-input-focused md-icon
+	color firstColor
+
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container:not(.md-input-invalid).md-input-focused .md-input, md-input-container.md-default-theme:not(.md-input-invalid).md-input-resized .md-input, md-input-container:not(.md-input-invalid).md-input-resized .md-input
+	border-color firstColor
+md-input-container.md-input-focused .md-input, md-input-container .md-input.ng-invalid.ng-dirty, md-input-container.md-input-resized .md-input
+	border-width 0px 0px 1px 0px
+md-checkbox.md-default-theme.md-checked .md-ink-ripple, md-checkbox.md-checked .md-ink-ripple
+	color firstColor
+md-checkbox.md-default-theme.md-checked .md-icon, md-checkbox.md-checked .md-icon
+	background-color firstColor
+.md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-fab, .md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised
+	background-color firstColor
+.md-default-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-default-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator
+	background firstColor
+.md-default-theme .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator
+	border 1px solid firstColor
+.md-default-theme .md-datepicker-open .md-datepicker-calendar-icon, .md-datepicker-open .md-datepicker-calendar-icon
+	color firstColor
+.md-datepicker-input-container.md-datepicker-focused
+	border-bottom-color firstColor
+.trix-content ul
+	list-style initial
+.editor
+	margin-top 20px
+	trix-editor
+		border-top 0px
+		border-left 0px
+		border-right 0px
+		border-bottom 1px solid firstColor
+		border-radius 0px
+#student_register_category
+	padding-top 10px
+	.mdCheckbox.checked
+		div.md-label
+			background #814e9c
+			box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+			display table
+			span
+			i.material-icons
+				color #fff
+	.mdCheckbox
+		display block
+		margin 0px auto
+		text-align center
+		div.md-label:hover
+
+			background #814e9c
+			box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+			/*transition all .5s*/
+
+			span
+			i.material-icons
+				color #fff
+				width 100%
+		div.md-label
+			margin 0 5%
+			width 70%
+			text-align center
+			padding 15px 0px
+			border-radius 3px
+			transition: all 0.6s
+			display table
+			i.material-icons
+				margin-right 10px
+				width 100%
+		div.md-icon
+			display none
+#teacher_register_profile
+	padding-top 10px
+	.mdCheckbox.checked
+		div.md-label
+			background #814e9c
+			box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+			display table
+			span
+			i.material-icons
+				color #fff
+
+	.mdCheckbox
+		display block
+		margin 0px auto
+		text-align center
+		div.md-label.selectedCheck
+			background #814e9c
+			box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+			span
+			i.material-icons
+				color #fff
+		div.md-label:hover
+
+			background #814e9c
+			box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+			/*transition all .5s*/
+
+			span
+			i.material-icons
+				color #fff
+		div.md-label
+			margin 0 5%
+			width 70%
+			text-align center
+			padding 15px 0px
+			border-radius 3px
+			transition: all 0.6s
+			display table
+			i.material-icons
+				margin-right 10px
+				width 100%
+		div.md-icon
+			display none
+.form-step
+	width 80%
+	margin 0px auto
+	.categories
+		display table
+		margin 0px auto
+		.categorie
+			display inline-block
+			padding 5px
+			label.lblCat
+				position relative
+				i
+					width 100%
+
+	.types
+		display table
+		margin 0px auto
+		.type
+			display inline-block
+			padding 5px
+	.botones
+		position relative
+	.botones-step2
+		width 200px
+		margin-left auto
+	.boton-next
+		margin-left auto
+		margin-right 20px
+	.boton-finish
+		display inline-block
+	.boton-previus
+		display inline-block
+		margin-right 10px
+#student_register_category, #register_student, #register_teacher
+	padding-top 10px
+#register_student, #register_teacher
+	padding-top 110px
+@media screen and (max-width: 910px)
+	padding-top 0px
+	div.responShow.openMenu
+		display block
+		position fixed
+		padding 10px
+		z-index 9
+		right 10px
+		top 10px
+		color #e84936
+		font-weight bold
+		i
+			font-weight bold
+			font-size 30px
+div.responShow
+	display none
+
+#home
+	.modalBeta
+		height 100vh
+		width: 100%
+		position fixed
+		top 0
+		z-index 9999999999
+		.blackBack
+			background-color rgba(0,0,0,0.75)
+			position fixed
+			top 0
+			right 0
+			height 100vh
+			width 100%
+		.modalBetaInfo
+			width 60%
+			margin 0px auto
+			display table-cell
+			vertical-align middle
+			position absolute
+			z-index 99999999999999999999999999999999999
+			left 0
+			right 0
+			top 50%
+			background #fff
+			text-align center
+			border-radius 5px
+			padding 20px 5%
+			-webkit-transform translate(0,-50%)
+			transform translate(0,-50%)
+			@media screen and (min-width: 320px) and (max-width: 981px)
+				width 90%
+				h1.titM
+						margin-top -10px
+						font-size 1em
+			h1
+				text-transform uppercase
+				font-size 1.3em
+				margin-top -20px
+			img
+				display block
+				margin -20px auto 0px
+				max-width 40%
+			.contiueBloxie
+				display table
+				width 100%
+				margin 40px 0px
+				span
+					background #eb4739
+					padding 15px 40px
+					text-transform uppercase
+					color #fff
+					font-weight bold
+					border-radius 3px
+
+
+	h1.noCourses
+		text-align center
+	padding-top 87px
+	position relative
+	@media screen and (max-width: 910px)
+		padding-top 0px
+	div.sliderSection
+		.slick-dots
+		.slick-dots li button:before
+			font-size 20px
+		div.slick-track
+			height 70vh
+		div.slideInd
+			@media screen and (max-width: 910px)
+				padding-top 10vh
+			height 100%
+			background-size cover
+			background-position-y 70%
+			padding-top 20vh
+			color #fff
+			text-shadow 2px 2px rgba(43,43,43,0.8)
+			h1
+				font-size 40px
+				text-transform uppercase
+				text-align center
+				font-weight 900
+			h2
+				font-size 22px
+				text-align center
+	/*div.nextLearn.ins:before
+		position absolute
+		content ""
+		width 100%
+		height 20px
+		box-shadow 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+		background transparent*/
+
+	div.nextLearn.ins
+		background #7B868C
+		overflow hidden
+		position relative
+		div.imgBom
+			width 50%
+			display inline-block
+			position relative
+			@media screen and (max-width: 760px)
+				width 100%
+				opacity 0.3
+			div.backBom
+				background-image url("../images/icono-habilidades.png")
+				background-position 50%;
+				background-size contain
+				width 350px
+				height 300px
+				background-repeat no-repeat
+				margin 0px auto -70px
+				@media screen and (max-width: 760px)
+					position absolute
+					top -70px
+					width 250px
+					height 200px
+					left -110px
+		div.textButton
+			width 50%
+			float right
+			margin-top 50px
+			@media screen and (max-width: 760px)
+				width 100%
+				float none
+				margin-top 20px
+			h2
+				text-align center
+				color #fff
+				text-transform uppercase
+			div.buttonCon
+				display block
+	div.nextLearn
+		background #E6595A
+		padding 20px 0
+		text-align center
+		h1
+			text-transform uppercase
+			width 100%
+			color #fff
+			font-size 40px
+			margin-bottom 10px
+		p
+			width 100%
+			color #fff
+			text-align center
+			font-size 18px
+		div.formSug
+			width 60%
+			margin 0px auto
+			display block
+			text-align center
+			form
+				div.div3.div1s
+					width 20%
+				div.div3.div2s
+					width 45%
+				div.div3
+					width 33.3333%
+					display inline-block
+					@media screen and (max-width: 760px)
+						width 100% !important
+						margin-bottom 10px
+					button
+						@media screen and (max-width: 760px)
+							width auto
+							margin-top 0px
+				.selectCat
+					background #fff
+					text-transform uppercase
+					margin 0 auto
+					height 36px
+					width 90%
+				input[type="text"]
+					width 90%
+					margin 0 auto
+					height 36px
+					border 0
+					padding-left 10px
+					text-transform uppercase
+					font-size 13px
+					display block
+				button
+					width 90%
+					span
+						color #e6595a
+	div.containerPad
+		width 90%
+		margin 0 auto
+		div.starCourses.noMargin
+			margin-bottom 0px
+		div.starCourses.pop
+			margin-bottom 50px
+		div.starCourses.conNoCourses
+			min-height initial
+		div.starCourses
+			position relative
+			min-height 500px
+			margin 0px 0px 30px
+			h3
+				text-align left
+				text-transform uppercase
+				padding 30px 10px 10px
+				margin 0px
+			div.coursesContainer.conNoCourses
+				height initial
+			div.coursesContainer
+				width 100%
+				height 300px
+				background-color #fcfcfc
+				position relative
+				div.sliderCourses, div.sliderCoursesPop,div.sliderCourseMar, div.sliderCourseBus,div.sliderCourseHab,div.sliderCourseMes
+					width 100%
+					div.slideCourses
+						div.picCourse
+							background-size cover
+							background-position 50%
+							height 300px
+							margin 10px
+						div.dataCourse
+							padding 0px 10px 5px
+							div.titCourse
+								height 40px
+							div.titCourse
+								font-size 14px
+								font-weight bold
+								text-transform uppercase
+								word-wrap break-word
+							div.catsCourse
+								width 100%;
+								display inline-block
+								div.cat
+									display inline-block
+						div.dateCourse
+							width 50%
+							float left
+							font-size 11px
+							padding-top 9px
+							text-transform uppercase
+							font-weight bold
+						div.teacherCourse
+							text-align right
+							width 50%
+							float right
+							div.picMentor
+								width 36px
+								height 36px
+								display inline-block
+								overflow hidden
+								border-radius 50%
+								float left
+								img
+									width 100%
+									height auto
+							div.nameMentor
+								text-align center
+								margin 10px 2px
+								font-size 11px
+								font-weight bold
+								text-transform uppercase
+		div.partners
+			width 100%
+			margin 80px auto 30px
+			padding 0
+			position relative
+			h1
+				text-align center
+				text-transform uppercase
+				font-weight 600
+			div.sponsorsContainer
+				width 100%
+				margin 0
+				padding 30px 0
+				position relative
+				text-align center
+				div.row1
+					width 80%
+					margin 0px auto
+				div.slick-prev
+					left 0
+				div.slick-next
+					right 0
+				div.sponsorSlide
+					width 25%
+					display inline-block
+					height 100px
+					background-size cover
+					background-position 50%
+					position relative
+					transition all .5s
+					-webkit-filter grayscale(100%)
+					display inline-block
+					filter grayscale(100%)
+					img
+						width 50%
+						height auto
+						margin 0px auto
+						display block
+				div.sponsorSlide:hover
+					-webkit-filter grayscale(0%)
+					filter grayscale(0%)
+	div.categoryCourses
+		padding 20px 0%
+		width 100%;
+		h3
+			text-transform uppercase
+			font-weight 500
+			margin 0px 5% 30px
+			width 90%
+
+		div.categoryContainer
+			width 100%
+			margin 0
+			padding 0
+			position relative
+			div.slick-prev
+				left 0
+			div.slick-next
+				right 0
+			div.categorySlide
+				height 300px
+				background-size cover
+				background-position 50%
+				position relative
+				transition all .5s
+				h3
+					text-align center
+					line-height 300px
+					color #fff
+					position absolute
+					font-weight bold
+					opacity 0
+					transition all .5s
+			div.categorySlide:hover
+				div.categorySlide:before
+					transition all .5s
+			div.categorySlide:hover:before
+				content ""
+				position absolute
+				background-color rgba(0,0,0,0.3)
+				height 100%
+				width 100%
+				z-index 0
+				transition all .5s
+
+			div.categorySlide:hover
+				transition all .5s
+				h3
+					opacity 1
+					transition all .5s
+
+
+	div.nextCourses
+		h3
+			text-transform uppercase
+			font-weight 500
+			margin 0px 5% 30px
+			width 90%
+		div.coursesContainer
+			width 100%
+			height 300px
+			background-color #fcfcfc
+
+
+	div.aboutUs
+		padding 50px 0
+		h2
+			text-transform uppercase
+			width 100%
+			font-size 40px
+			margin-bottom 10px
+			text-align center
+		p
+			width 100%
+			text-align center
+			font-size 18px
+			padding 20px 30%
+	div.inCompany
+		display table
+		width 90%
+		padding 30px 5%;
+		background-size cover
+		h5
+			margin-bottom 30px
+			font-size 20px
+		div.leftPart
+			width 50%
+			height 320px
+			float left
+			background-image url("/images/3.png")
+		div.rightPart
+			width 50%
+			height 320px
+			float right
+			padding 10px 5%
+#login
+	padding-top 200px
+
+header.menu.showResponsive
+	transform translateY(0)
+header.menu
+	display table
+	clear both
+	width 100%
+	padding 0 5%
+	position fixed
+	z-index 999
+	background-color #fff
+	box-shadow 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+	transition all .5s
+	@media screen and (max-width: 910px)
+		box-shadow none
+		height 100vh
+		transform translateY(-105%)
+
+		div.responShow.close
+			display block
+			position absolute
+			right 20px
+			top 10px
+		div.logo
+			width 30% !important
+			margin 0 auto
+			display block
+			float none !important
+		ul.optionsMenu.resp
+			display block
+			margin 0px auto
+			float none
+			li.responHide
+				display none
+			li.responShow
+				display block
+				a
+					color #E84936
+					font-weight 500
+			li
+				display table
+				width 100%
+				text-align center
+				margin 35px 1% 20px
+				font-weight 300
+				text-transform uppercase
+				font-size 13px
+				float none
+				transition all .5s
+				border-bottom none
+
+	div.responShow
+		display none
+	div.logo
+		float left
+		width 12%
+		img
+			width 100%
+			transform scale(1.5)
+			padding-top 10px
+			transition all .2s
+		img.scoll
+			transform scale(1)
+			padding-top 0px
+			transition all .2s
+			@media screen and (max-width: 910px)
+				transform scale(1.5)
+	ul.optionsMenu
+		display table
+		float right
+		width 70%
+		li.btnMenu:hover
+			border-bottom 2px solid transparent
+		li.responShow
+			display none
+		li
+			display inline-block
+			margin 35px 1% 20px
+			font-weight 300
+			text-transform uppercase
+			font-size 13px
+			float right
+			transition all .5s
+			border-bottom 2px solid transparent
+			.formEmp
+				margin-top -10px
+		li:hover
+			border-bottom 2px solid #E6595A
+
+	h1
+		text-align center
+		margin-bottom 20px
+	.botones
+		display table
+		box-shadow 0px 0px 3px 2px rgba(0,0,0,.2)
+		width 90%
+		margin-left 5%
+		padding 20px 0px
+		.cel-boton
+			display inline-block
+			width 50%
+		.student, .login
+			text-align right
+			.md-button
+				margin-left auto
+.image
+	width 200px
+	height 200px
+	display block
+	margin 0px auto 10px auto
+	.photo, .imagen
+		cursor pointer
+		width 200px
+		height 200px
+		background white
+		transition background .5s
+		border 2px dotted firstColor
+		span
+			i
+				font-size 8em
+				color azul-claro
+				line-height 200px
+				margin 0px auto
+				display block
+				transition color .5s
+	.photo:hover
+		background firstColor
+		transition background .5s
+		span
+			i
+				color white
+				transition color .5s
+	.imagen
+		background-size 100% 100%
+		background-repeat no-repeat
+		span
+			display none
+	.imagen:hover
+		span
+			display block
+			i
+				color firstColor !important
+				font-size 4em
+				line-height normal
+				padding-top 25%
+			div
+				text-align center
+				color firstColor
+.form-load
+	position fixed
+	background rgba(0,0,0,0.2)
+	width 100%
+	height 100vh
+	z-index 100
+	top 0px
+	display table
+	i
+		color firstColor
+		display table-cell
+		font-size 6em
+// Edicion de los cards
+.courses
+	.course
+		md-card-title .md-headline
+			font-size 1.2em
+footer.footerSite
+	width 100%
+	background #3d4e5b
+	clear both
+	display table
+	padding 40px 0;
+	margin-top 0
+	color #fff
+	div.containerContent
+		width 90%
+		margin 0 auto
+		display table
+	div.leftSideWe
+		width 50%
+		float left
+		text-align center
+		padding 10px 25px
+		font-size 1.6rem
+		@media screen and (max-width: 760px)
+			width 90%
+			margin 0px auto
+			float none
+			border-bottom 2px solid #fff
+			padding-bottom 10px
+	div.rightSideWe
+		width 50%
+		float right
+		@media screen and (max-width: 760px)
+			width 100%
+			float none
+			margin 0 auto
+			padding-top 10px
+		ul.socialLinks
+			width 75%
+			margin 0px auto
+			border-left 2px solid #fff
+			@media screen and (max-width: 760px)
+				border-left 0px solid #fff
+				width 100%;
+			li
+				display block
+				text-align center
+				padding 12px 0
+
+				@media screen and (max-width: 760px)
+					display inline-block
+					width 33.3333%
+				div.nemeLink
+					width 5%
+					padding-left 10px
+					text-transform uppercase
+					font-weight 600
+					font-size 13px
+					@media screen and (max-width: 760px)
+						font-size 11px
+						padding-left 0px
+						width 100% !important
+						text-align center
+					a
+						color #fff
+						cursor pointer
+				div.iconLink
+					width 5%
+					display inline-block
+					@media screen and (max-width: 760px)
+						width 100%
+				div.nemeLink
+					display inline-block
+@keyframes gradient
+	0%
+		background-color rgba(0,0,0,0)
+		background-image -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1))
+		background-image -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1))
+		background-image -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1))
+		background-image linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.1))
+	100%
+		background-color rgba(0,0,0,0)
+		background-image -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5))
+		background-image -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5))
+		background-image -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5))
+		background-image linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5))
+
+.inner-card
+	color #fff
+	position relative
+	height 250px
+	/*&:hover
+		.title-date-course
+			background-color rgba(0,0,0,0)
+			background-image -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5))
+			background-image -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5))
+			background-image -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5))
+			background-image linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5))
+		.header-card
+			background-color rgba(0,0,0,0)
+			background-image -webkit-linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0))
+			background-image -o-linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0))
+			background-image -moz-linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0))
+			background-image linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0))*/
+
+	.header-card
+		display table
+		width 100%
+		position relative
+		overflow hidden
+		transition all 1s ease
+		background-color rgba(0,0,0,0)
+		background-image -webkit-linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0))
+		background-image -o-linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0))
+		background-image -moz-linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0))
+		background-image linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0))
+		.avatar-teacher
+			display table
+			width 48px
+			height 48px
+			margin 5px
+			border-radius 50%
+			float left
+
+		.info_teacher_card
+			display table
+			float left
+			margin-top 15px
+			color #fff
+		.menu-card-options
+			right 0
+			position absolute
+			top 0
+			i
+				color #fff
+			a.md-body-1
+				line-height initial
+
+
+	.title-date-course
+		display block
+		width 100%
+		position absolute
+		bottom 0
+		padding 10px
+		transition background-color 1s ease
+		background-color rgba(0,0,0,0)
+		background-image -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1))
+		background-image -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1))
+		background-image -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1))
+		background-image linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1))
+		a
+			color #fff
+		.date-course
+			i.calendar_icon
+				font-size 20px
+			.date-course-value
+				display	inline-block
+
+
+
+
+
+//********
+#activate_course
+	.formulario
+		.teacher .label-title
+			font-size 1.2em
+		.subtitle
+			font-size 1.2em
+		.field
+			.category
+				margin-right 10px
+		.botones-step2
+			display table
+			margin-left auto
+    		.boton
+				display table-cell
+				margin-left auto
+			.boton-previus
+				margin-right 20px
+.card-info
+	box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+	margin 5px 0px
+	padding-top 10px
+	padding-bottom 10px
+	.title
+		color firstColor
+		font-size 1.2em
+		margin-top 10px
+		margin-bottom 5px
+	.name
+		font-size 1.2em
+		margin-top 3px
+	.texto
+		padding 0px 10px
+		a
+			word-wrap break-word
+			strong
+				word-wrap break-word
+		ul
+			list-style initial
+	.boton
+		text-align center
+		display block
+	.imagen
+		width 100%
+
+	.image
+		img
+			width 100%;
+			border-radius 50%
+	.data_course
+		padding-top 10px
+		position relative
+	.data_course:before
+		content ''
+		width 80%
+		height 1px
+		position absolute
+		left: 10%
+		background rgba(0,0,0,0.1)
+	.data_course:nth-child(1):before
+		display none
+	.category span
+		margin 0px 3px
+.card-info.profesor
+	.name
+		text-align center
+	.descripcion, .category
+		margin-top 10px
+#courseEnrollment
+	.opciones
+		display table
+		margin 10px auto
+		.opcion
+			display: table-cell
+		.opcion:nth-child(1)
+			padding-right 10px
+		.opcion:nth-child(2)
+			padding-left 10px
+	.formulario_estudiante
+		.botones
+			display table
+			margin 10px auto
+			.boton
+				display table-cell
+			.boton:nth-child(1)
+				padding-right 10px
+			.boton:nth-child(2)
+				padding-left 10px
+	.quantity
+		.botones
+			display table
+			margin 10px auto
+			.boton
+				display table-cell
+			.boton:nth-child(1)
+				padding-right 10px
+			.boton:nth-child(2)
+				padding-left 10px
+		md-input-container
+			width 200px
+			margin 10px auto
+.course_public, #courseEnrollment
+	padding-top 110px
+#my_profile
+	md-tab-content
+		display inline !important
+	.button-logout
+		position absolute
+		right 10px
+	.informacion
+		padding-right 0px
+		padding-left 0px
+		.button-edit
+			position fixed
+			right 0px
+			bottom 5px
+		.fondo
+			background #381851
+			width 100%
+			height 20vh
+			position relative
+			z-index 2
+			.title
+				text-align center
+				color white
+				padding-top 10px
+		.fondo2
+			background rgba(56, 24, 81, 0.9)
+			img.image
+				width 100px
+				height 100px
+				display block
+				margin 0px auto
+				border-radius 50%
+				position relative
+				z-index 3
+				margin-top -50px
+			.datos
+				padding 5px 10%
+				.data
+					margin-top 20px
+					.label_title
+						color rgba(255,255,255,0.5)
+						font-size 12px
+					.info
+						color white
+				.coin
+					width 115px
+					margin 0px auto
+					position relative
+					img
+						width 20px
+						height 20px
+						margin-right 5px
+				.iconos
+					display table
+					margin 20px auto
+					position relative
+					.icono
+						background white
+						color black
+						//padding 10px 5px
+						margin-right 5px
+						margin-left 5px
+						border-radius 50%
+						width 35px
+						height 35px
+						display inline-block
+						text-align center
+						i
+							line-height 35px
+				.separate
+					height 10px
+				md-input-container
+					label, input, textarea
+						color white
+		.image-update
+			width 100px
+			height 100px
+			margin-left auto
+			margin-right auto
+			margin-top -50px
+			position relative
+			z-index 3
+
+			.image
+				background-repeat no-repeat
+				background-size 100% 100%
+				width 100px
+				height 100px
+				border-radius 50%
+				//margin 0px auto
+			.image:before
+				content ''
+				width 100px
+				height 100px
+				position absolute
+				background rgba(255,255,255,.5)
+				border-radius 50%
+			.deleteContainer
+				position relative
+				z-index 10
+				cursor pointer
+				text-align center
+				i
+					font-size 2em
+					line-height 100px
+#dashboard
+	span.container-button
+		position fixed
+		right 5%
+		top 85vh
+		z-index 1
+	.panel-izq
+		.coinsSettings
+			box-shadow sombraPanels
+			.title
+				font-size 1.5em
+				color firstColor
+			.md-mini
+				float right
+				z-index 1
+			.datos
+				margin-top 20px
+				.data
+					margin-top 20px
+					.label_title
+						color rgba(0,0,0,0.5)
+						font-size 12px
+					.info
+						color black
+.areaDesktop
+	.zone-rating, .zone-certificado
+		text-align center
+		padding 20px 0px
+		box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+		.msg
+			font-size 2em
+		button
+			font-size 1.5em
+			i
+				margin-top -4px
+				margin-right 4px
+	.backscreenRating
+		background rgba(0,0,0,0.5)
+		position fixed
+		width 100%
+		height 100vh
+		z-index 9
+		top 0px
+	.modalRating
+		width 60%
+		min-width 300px
+		position absolute
+		left 20%
+		background white
+		z-index 10
+		.content-modal
+			text-align center
+			padding 5% 10px
+			.stars
+				color #3c1053
+				i
+					font-size 4em
+			md-input-container
+				margin-top 40px
+				text-align left
+				width 90%
+				margin-left 5%
+@media(max-width:480px)
+	.form-load
+		i
+			font-size 4em
+	#my_profile
+		md-tab-content
+			display inline !important
+		.informacion
+			padding-right 0px
+			padding-left 0px
+			.button-edit
+				position fixed
+				right 0px
+				bottom 5px
+			.fondo
+				background #381851
+				width 100%
+				height 20vh
+				position relative
+				z-index 2
+				.title
+					text-align center
+					color white
+					padding-top 10px
+			.fondo2
+				background rgba(56, 24, 81, 0.9)
+				img.image
+					width 100px
+					height 100px
+					display block
+					margin 0px auto
+					border-radius 50%
+					position relative
+					z-index 3
+					margin-top -50px
+				.datos
+					padding 5px 10%
+					.data
+						margin-top 20px
+						.label_title
+							color rgba(255,255,255,0.5)
+							font-size 12px
+						.info
+							color white
+					.iconos
+						display table
+						margin 20px auto
+						position relative
+						.icono
+							background white
+							color black
+							//padding 10px 5px
+							margin-right 5px
+							margin-left 5px
+							border-radius 50%
+							width 35px
+							height 35px
+							display inline-block
+							text-align center
+							i
+								line-height 35px
+	.modalRating
+		width 90% !important
+		left 5% !important
+		.content-modal
+			text-align center
+			padding 5% 10px
+			.stars
+				color #3c1053
+				i
+					font-size 2.6em !important
+			md-input-container
+				margin-top 40px
+				text-align left
+				width 90%
+				margin-left 5%
+
+
+/*Detalle del curso*/
+/*Mobile*/
+@keyframes recording
+	0%
+		opacity 0
+	100%
+		opacity 100%
+div.areaMobile
+	width 100%
+	color #484848
+	position relative
+	padding 0
+	.zone-rating
+		text-align center
+		padding 20px 0px
+		box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+		.msg
+			font-size 19px
+		button
+			font-size 15px
+			i
+				margin-top -4px
+				margin-right 4px
+	.backscreenRating
+		background rgba(0,0,0,0.5)
+		position fixed
+		width 100%
+		height 100vh
+		z-index 9
+		top 0px
+	.modalRating
+		width 60%
+		position absolute
+		left 20%
+		background white
+		z-index 10
+		.content-modal
+			text-align center
+			padding 5% 10px
+			.stars
+				color #3c1053
+				i
+					font-size 4em
+			md-input-container
+				margin-top 40px
+				text-align left
+				width 90%
+				margin-left 5%
+	.rating
+		padding-right 15px
+		text-align right
+		i
+			font-size 20px
+		.users
+			margin-left 8px
+			.cant
+				font-size 15px
+				vertical-align sub
+	div.chatArea
+		position absolute
+		top -48px
+		padding 0
+		height 100vh
+		div.containerTemplateChat
+			width 100%
+			div.boxChat
+				margin-top 0px
+				div.inputChatContainer
+					position fixed
+					bottom 0
+					left 0
+					right 0
+					width 100%
+					background #fff
+					height 10vh
+
+					div.inputChat
+						div.input
+							width 70%;
+				div.headerChat
+					/*position fixed*/
+					top 0
+					left 0
+					right 0
+					width 100%
+					padding-top 15px
+					padding-bottom 15px
+					padding 15px 3%
+					position fixed
+					z-index 1
+					font-size 14px
+
+					i
+						margin-right 10px
+
+					div.mobileBtn
+						margin-top -5px
+						display inline-block
+				div.bodyChat
+					padding-top 10vh
+					/*position fixed*/
+					left 0
+					right 0
+					margin-bottom 0px
+					width 100%
+
+	.chat_b
+		position absolute
+		top 165px
+		right 10%
+	h1.mobileTitle
+		font-size 30px
+		padding 10% 5% 5%
+		margin 0
+		font-weight 400
+	div.panoramicCoursePic
+		Mobile
+		width: 100%;
+		display table
+		height 200px
+		background-size cover
+		background-position 50%
+		box-shadow  0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+	div.areaInfoCourse
+		margin 0 auto
+		width 90%
+
+		div.dataShortContainer
+			width 100%
+			display table
+			font-size 17px
+			padding 15px 0
+
+			div.studentsCoruse
+				display inline-block
+				width 25%
+				img
+					border-radius 50%
+					width 48px
+					height 48px
+					margin 0px auto
+			a{
+				float right
+				text-transform uppercase
+				font-size 11px
+				margin-top 5px
+				font-weight 500
+				color #EB4739
+				text-decoration none
+
+			}
+			a:hover{
+				text-decoration underline
+
+			}
+
+			div.dataTeacher
+				display table
+				padding-left 13px
+				div.imageProfile
+					width 48px
+					height 48px
+					img
+						width 100%
+				div.category
+					display inline-block
+					padding-left 4px
+					i
+						font-size 20px
+						display inline-block
+						cursor pointer
+					div
+						font-size 11px
+						display table
+						text-transform uppercase
+						font-weight 600
+						margin-top 2px
+
+			i
+				float left
+				font-size 32px
+			div.floatIcon
+				width 10%
+				float left
+				display inline-block
+			div.dateCourse.nameTeacher
+				/*padding-left 5px*/
+			div.dateCourse
+				display inline-block
+				padding-left 20px
+				font-weight 400
+				width 90%
+			div.imageProfile
+					width 32px
+					height 32px
+					float left
+					img
+						width 32px
+						height 32px
+						border-radius 50%
+
+div.detailCourseArea
+	float none
+	min-height 500px
+	padding 0
+	/*display table*/
+	div.backScreen-upload
+		width 100%
+		position fixed
+		height 100vh
+		background rgba(0,0,0,0.7)
+		top 0px
+	div.modal-upload
+		width 100%
+		position fixed
+		height 100vh
+		top 0px
+		z-index 19
+		.backScreen-files
+			background rgba(0,0,0,0.5)
+			width 100%
+			height 100vh
+			position absolute
+			z-index 1
+		.content
+			width 60%
+			min-width 300px
+			height auto
+			display table
+			background white
+			border-radius 5px
+			box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+			margin 15% auto
+			padding 30px 0px
+			text-align center
+			z-index 2
+			position relative
+			.types_files
+				padding-bottom 40px;
+				.title-files
+					margin-bottom 10px
+				span
+					margin-right 5px
+					img
+						width 32px
+						height auto
+			md-progress-linear
+				width 80%
+				margin 0px auto
+				padding-bottom 60px
+				.md-bar
+					background #70236B
+			.info-file
+				border-top 1px solid rgba(0,0,0,0.2)
+				width 90%
+				margin 0px auto
+				text-align left
+				padding-top 10px
+				min-width 290px;
+				.info
+					display table
+					span.izq
+						display table-cell
+					div.icon
+						margin-right 5px
+						display table-cell
+						img
+							width 65px
+							height auto
+					div.text
+						display table-cell
+						vertical-align middle
+						max-width 400px
+						word-wrap break-word
+					span.borrar
+						color rgba(0,0,0,0.5)
+						padding-left 10px
+						cursor pointer
+						display table-cell
+						vertical-align middle
+						transition color .5s
+					span.borrar:hover
+						color #EB4E41
+						transition color .5s
+				.button
+					margin 10px auto
+					display table
+					position relative
+					padding 7px 10px
+			.button
+				display initial
+				color white
+				border-radius 5px
+				box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+				background #70236b
+				padding 21px 15px 20px 15px;
+				cursor pointer
+				i
+					font-size 40px
+					margin-top -9px
+					margin-right 10px
+				span
+					font-size 18px
+	div.panoramicCoursePic
+		width: 100%;
+		display table
+		height 250px
+		background-size cover
+		background-position 50%
+		box-shadow sombraImageCourse
+	div.btnAddCourse
+		position fixed
+		display table
+		right 5%
+		bottom 20px
+		z-index 2
+	div.dataContainerDetailCourse
+		width 95%
+		margin 0 auto
+		max-width 1700px
+		padding-top 60px
+		padding-bottom 80px
+		clear both
+		display table
+		div.infoMain
+			div.dataShortContainer
+				width 100%
+				display table
+				font-size 17px
+				padding 15px 0
+				div.iconTitleStudents
+					width 100%
+					display table
+					.dateCourse
+						padding-top 5px
+				div.picsStudents
+					padding-top 20px
+					div.studentsCoruse
+						display inline-block
+						width 25%
+						img
+							border-radius 50%
+							width 40px
+							height 40px
+							margin 0px auto
+							display block
+				a{
+					float right
+					text-transform uppercase
+					font-size 11px
+					margin-top 5px
+					font-weight 500
+					color #EB4739
+					text-decoration none
+
+				}
+				a:hover{
+					text-decoration underline
+
+				}
+				div.dataTeacher
+					display table
+					padding-left 13px
+					div.imageProfile
+						width 48px
+						height 48px
+						img
+							width 100%
+					div.category
+						display inline-block
+						padding-left 4px
+						i
+							font-size 20px
+							display inline-block
+							cursor pointer
+						div
+							font-size 11px
+							display table
+							text-transform uppercase
+							font-weight 600
+							margin-top 2px
+
+				i
+					float left
+					font-size 32px
+				div.dateCourse.nameTeacher
+					/*padding-left 5px*/
+				div.dateCourse
+					display inline-block
+					padding-left 20px
+					font-weight 600
+					font-size 15px
+				div.imageProfile
+						width 32px
+						height 32px
+						float left
+						img
+							width 32px
+							height 32px
+							border-radius 50%
+			div.files
+				border-bottom 1px solid rgba(0,0,0,0.12)
+				.iconTitleStudents
+					padding 5px 0px
+					background #70236B
+					color white
+					position relative
+					.new
+						position absolute
+						right 10px
+						top 0px
+						margin 0px
+						z-index 10
+				.content-list
+					padding 10px 15px
+					.empty
+						//padding 10px 0px
+						text-align center
+					.file
+						width 100%
+						display table
+						padding 5px 0px 10px 0px
+						border-bottom 1px solid rgba(0,0,0,0.2)
+						.icon
+							display table-cell
+							width 40px
+							vertical-align middle
+							img
+								width 40px
+						.info
+							display table-cell
+							word-break break-all
+							text-align left
+							font-size 14px
+							.title
+								text-align left
+								float none
+								text-transform none
+								font-size 14px
+								color #333
+							span
+								width 100%
+								word-wrap break-word
+						.btn-download
+							margin-left 10px
+					.file:last-child
+						border-bottom 0px solid
+
+		div.infoGeneral
+			h1.titleCourse
+				width 100%
+				font-weight bold
+				text-transform uppercase
+				font-size 4em
+				word-wrap break-word
+				margin-top 0px
+
+			div.categoriesCourse
+				width 100%
+				margin-bottom 50px
+				div.category
+					display inline
+					i
+						font-size 2.5em
+						cursor pointer
+				.rating
+					float right
+					margin-top 6px
+					.users
+						margin-left 10px
+						i
+							font-size 17px
+			div.containerTextCourse
+				margin 30px 0;
+				div.title
+					font-size 1.3em
+					text-transform uppercase
+					font-weight 500
+					margin-bottom 10px
+				div.texto
+					word-wrap break-word
+			div.referecesCourse
+				padding-bottom 70px
+
+/*Templates courses*/
+
+/*templates chats*/
+div.chatArea
+	background #efefef
+	div.containerTemplateChat
+		width 75%
+		margin 0px auto
+		display block
+		min-height 300px
+		border none
+		padding-bottom 70px
+		div.boxChat
+			border none
+			box-shadow sombraPanels
+			margin-top -65px
+			div.headerChat
+				width 100%
+				background-color #70236B
+				color #fff
+				font-size 18px
+				font-weight 500
+				padding 1% 5%
+				text-transform uppercase
+				i
+					margin-right 20px
+			div.bodyChat
+				max-height 600px
+				overflow-y auto
+				overflow-x hidden
+				ul.questionsContainer
+					li.question.answer
+						padding-bottom 0
+					li.question
+						width 100%
+						padding 30px 0
+						display table
+						clear both
+						div.innerQuestion.innerAnswer
+							float right
+							padding 0px 4%
+						div.innerQuestion
+							width 80%
+							display table
+							float left
+							padding 0px 4%
+							div.pictureContainer
+								width 36px
+								float left
+								display inline-block
+								margin-top 10px
+								height 36px
+								img
+									width 100%
+									border-radius 50%
+									height 100%
+							div.msgContainer
+								width 89%
+								margin 10px 2.5% 0
+								float left
+								display inline-block
+								div.nameDateContainer
+									width 100%
+									display table
+									span.nameMsg
+										float left
+										font-size 15px
+										font-weight 600
+									span.dateMsg
+										float right
+								p
+									width 100%
+									display block
+									margin-top 15px
+									font-size 1.3rem
+									line-height 1.5
+				div.actionsContainer
+					width 100%
+					clear both
+					display table
+					transition all 1s ease
+					div.answerQuestion
+						float right
+						width auto
+						padding 0px 4%
+				div.actionsContainer.hideBtn
+					transform translateX(100%)
+			div.inputChatContainer.respond-online
+				padding 25px
+				display table !important
+			div.inputChatContainer.buy-container
+				border none
+				padding 25px 0
+
+			div.inputChatContainer
+				width 100%
+				display table
+				padding 25px 5% 0
+				background rgba(234, 234, 234, 0.61)
+				border-top 1px solid #c7c7c7
+				.btn-buy
+					display table
+					margin 0px auto
+
+				div.inputChat
+					display block
+					clear both
+
+					div.input
+						width 80%
+						float left
+						.check-pay
+							margin 10px 0 0
+						div.audioContainer
+							display block
+							width 100%
+							audio
+								width 100%
+					div.actionsBottom
+						width 20%
+						float left
+						text-align center
+						i
+							cursor pointer
+						div.RecordNow.inline
+							display inline-block
+							i.redIcon.activate
+								color red
+								cursor initial
+								transition opacity 0.5s
+								animation recording 0.9s infinite
+						div.microContainer
+							display inline-block
+							cursor pointer
+
+/*Templates courses*/
+
+.areaAsistant
+	height calc(100vh - 48px)
+	height -o-calc(100vh - 48px)
+	height -webkit-calc(100vh - 48px)
+	height -moz-calc(100vh - 48px)
+	position absolute
+	width 100%
+	display table
+	top -48px
+	.lisstudents
+		padding-top 0
+		max-height calc(100vh - 48px)
+		overflow-y auto
+		background white
+		a
+			display table
+			width 100%
+			.name-area-list
+				display inline-block
+				font-size 1.7rem
+				font-weight 500
+	div.HeaderStudents
+		div.toolbar-students
+			background-color #70236b
+
+		span
+			text-transform uppercase
+			font-size 1.5rem
+			font-weight 500
+		div.btnInfoList
+			left 0
+			margin-right 5%
+.areaUpload
+	height calc(100vh - 48px)
+	height -o-calc(100vh - 48px)
+	height -webkit-calc(100vh - 48px)
+	height -moz-calc(100vh - 48px)
+	position absolute
+	width 100%
+	display table
+	top -48px
+	.listFiles
+		padding-top 0
+		max-height calc(100vh - 48px)
+		overflow-y auto
+		background white
+		.icon
+			img
+				width 32px
+		.info
+			font-size 12px;
+		a
+			//display table
+			//width 100%
+			word-break break-word
+			.name-area-list
+				display inline-block
+				font-size 1.7rem
+				font-weight 500
+		a.btn-download
+			position absolute
+			right 10px
+			padding 5px
+			border-radius 50%
+			background firstColor
+			color white
+	div.HeaderUpload
+		div.toolbar-students
+			background-color #70236b
+
+		span
+			padding-left 10px
+			text-transform uppercase
+			font-size 1.5rem
+			font-weight 500
+		div.btnInfoList
+			//float right
+			//position absolute
+			//right 0
+.optionMobileDetail
+	position fixed
+	bottom 2vh
+	right 5%
+/*Finaliza el detalle del curso*/
+
+/*Enrollment Private*/
+section#enrollment_course
+	background #f3f3f3
+	padding 30px 0
+	.fullContainer
+		width 90%
+		margin 0px auto
+		padding 40px 5% 40px
+		box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+		background-color #fff
+		display table
+		div.containerData
+			display table
+			width 100%
+			div.titleGrid
+				font-size 1.6rem
+				text-transform uppercase
+				text-align center
+				font-weight bold
+				margin-bottom 10px
+
+			div.areaCourse
+				div.titleGrid
+					text-align left
+					@media screen and (max-width: 991px)
+						margin-bottom 0px
+				div.imageCourseEnrollment
+					width 18%
+					margin 1%
+					display inline-block
+					@media screen and (max-width: 991px)
+						width 100%
+					img
+						width 100%
+				div.titleCourseEnrollment
+					width 77%
+					margin 1%
+					display inline-block
+					font-size 1.8rem
+					word-wrap break-word
+			div.areaPrice
+				div.titleGrid
+					@media screen and (max-width: 991px)
+						margin-bottom 0px
+				div.priceGrid
+					width 100%
+					text-align center
+					display table
+					font-size 1.5rem
+					padding-top 30px
+					@media screen and (max-width: 991px)
+						padding-top 10px
+						padding-bottom 30px
+
+			div.areaQuantity
+				div.titleGrid
+					@media screen and (max-width: 991px)
+						margin-bottom 0px
+				div.inputNumber
+					padding 0 20%
+					input
+						text-align center
+						@media screen and (max-width: 991px)
+							width 30%
+							margin 0px auto
+							display block
+							float none
+			div.actionsEnrollment
+				padding 30px 0 10px
+				@media screen and (max-width: 991px)
+					padding 10px 0 10px
+				div.TotalPricer
+					@media screen and (max-width: 991px)
+						text-align center
+						font-size 1em
+						text-transform uppercase
+						font-weight bold
+				div.TotalPrice
+					font-size 1.6rem
+					text-transform uppercase
+					text-align center
+					font-weight bold
+
+					div.payTotal
+						span.totalEnroll
+							font-weight 100
+							color #14af27
+				div.actionEnrollment
+					text-align center
+/*Payment Course*/
+section#payment_course
+	overflow none
+	div.modalPayment
+		position fixed
+		top 0
+		background rgba(0,0,0,0.75)
+		width 100%
+		height 100vh
+		z-index 1
+		div.containerPayment
+			width 70%
+			margin 2% auto
+			background #fff
+			display table
+			padding 40px
+			div.cupos
+				font-size 15px
+				font-weight 800
+				margin-bottom 15px
+				text-transform uppercase
+
+			div.subtitle
+				text-transform uppercase
+				font-size 14px
+				margin-bottom 20px
+				font-weight 500
+			.tdc form
+				.credit
+					display table
+					.cvv, .mes, .ano
+						display table-cell
+					.cvv
+						width 60px
+
+				.identificacion
+					display table
+					.tipo, .numero
+						display table-cell
+					.tipo
+						width 60px
+					.numero
+						width 100%
+				.tipoTDC
+					img
+						width 40px
+						filter grayscale(100%)
+						transition filter 0.5s
+						cursor pointer
+						margin-right 10px
+					img:hover
+						filter grayscale(0%)
+						transition filter 0.5s
+					img.active
+						filter grayscale(0%)
+			div.botones
+				div.boton
+					button
+						margin 10px
+	div.modalPaymentEmpty
+		position fixed
+		top 0
+		background rgba(0,0,0,0.75)
+		width 100%
+		height 100vh
+		z-index 1
+		div.containerPayment
+			width 70%
+			margin 15% auto
+			background #fff
+			display table
+			padding 40px
+			font-size 2em
+			text-align center
+			a
+				background-color firstColor
+				color white
+				box-shadow 2 2px 5px 0 rgba(0, 0, 0, 0.26)
+
+section#invitation
+	overflow none
+	div.modalPayment
+		position fixed
+		top 0
+		background rgba(0,0,0,0.75)
+		width 100%
+		height 100vh
+		z-index 1
+		div.containerPayment
+			width 70%
+			margin 10% auto
+			background #fff
+			display table
+			padding 40px
+			div.cupos
+				font-size 15px
+				font-weight 800
+				margin-bottom 15px
+				text-transform uppercase
+
+			div.subtitle
+				text-transform uppercase
+				font-size 14px
+				margin-bottom 20px
+				font-weight 500
+			div.botones
+				div.boton
+					button
+						margin 10px
+
+.inscripcion
+	background #FFD600
+.progreso
+	background #00695C
+.terminado
+	background #3C1053
+.inner-card .header-card .state
+	margin-top 15px
+	transition margin-right 0.5s
+	span
+		padding 2px 3px 2px 10px
+		font-size 12px
+		border-top-left-radius 10px
+		border-bottom-left-radius 10px
+		box-shadow 0px 2px 3px 1px rgba(0,0,0,.1)
+
+section#accept_invitation
+	div.modalInvitation
+		position fixed
+		top 0
+		background rgba(0,0,0,0.75)
+		width 100%
+		height 100vh
+		z-index 1
+		div.containerPayment
+			width 70%
+			margin 15% auto
+			background #fff
+			display table
+			padding 40px
+			font-size 2em
+			text-align center
+			div.md-button, a.md-button
+				background-color firstColor
+				color white
+				box-shadow 2 2px 5px 0 rgba(0, 0, 0, 0.26)
+section#acept_invitation
+	div.modalInvitation
+		position fixed
+		top 0
+		background rgba(0,0,0,0.75)
+		width 100%
+		height 100vh
+		z-index 999
+		div.containerPayment
+			width 70%
+			margin 7% auto
+			background #fff
+			display table
+			padding 40px
+			font-size 2em
+			text-align center
+			form
+				display table
+				width 100%
+				font-size 13px
+				text-align left
+				.md-block
+					width 50%
+					display inline-block
+section#accept_invitation_no_log
+	div.modalInvitation
+		position fixed
+		top 0
+		background rgba(0,0,0,0.75)
+		width 100%
+		height 100vh
+		z-index 9
+		div.containerPayment
+			width 70%
+			margin 10% auto
+			background #fff
+			display table
+			padding 40px
+			font-size 2em
+			text-align center
+			form
+				display table
+				width 100%
+				font-size 13px
+				text-align left
+				.md-block
+					width 50%
+					display inline-block
+			a.md-button
+				background-color firstColor
+				color white
+				box-shadow 2 2px 5px 0 rgba(0, 0, 0, 0.26)
+
+@media(min-width: 1024px)
+	.inner-card .header-card .state
+		margin-right -100%
+	.inner-card:hover
+		.header-card .state
+			margin-right 0%
+			transition margin-right 0.5s
+@media(max-width: 1023px)
+	.inner-card .header-card .state
+		margin-right 0%
+@media(max-width: 480px)
+	section#payment_course
+		div.modalPayment
+			div.containerPayment
+				width 95%
+				padding 15px
+	section#invitation
+		div.modalPayment
+			div.containerPayment
+				width 95%
+				padding 15px
+	section#accept_invitation_no_log
+		div.modalInvitation
+			div.containerPayment
+				width 95%
+				padding 15px
+				p
+					font-size 25px
+				form
+					.md-block
+						width 100%
