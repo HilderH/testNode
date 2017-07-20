@@ -1,4 +1,4 @@
-var app = angular.module("app",['ngMaterial', 'angularTrix','ngMaterialDatePicker']);
+var app = angular.module("app",['ngSanitize','ngMaterial', 'angularTrix','ngMaterialDatePicker']);
 
 app.factory("scopes",[function(){
 	var scopes = [];

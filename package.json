@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "angular-sanitize": "^1.6.3",
     "async": "^2.0.1",
     "connect-redis": "^1.4.5",
     "ejs": "2.3.4",

@@ -28,64 +28,41 @@ block floats
 					div(class="confirmButton")
 				div(class="col-xs-6")
 					div(class="cancelButton")
-	div(class="menuContainer" ng-controller="menu")
-		div(class="navBarmenu")
-			md-nav-bar(class="navbar-main" md-selected-nav-item="page2" nav-bar-aria-label="navigation links" md-stretch-tabs="always")
-				md-nav-item(md-nav-href="#" name="page1" flex)
-					i(class="material-icons") home
-				md-nav-item(md-nav-href="#" name="page2" flex)
-					i(class="material-icons") perm_media
-				md-nav-item(md-nav-href="/MyProfile" name="page3" flex)
-					i(class="material-icons") person
-	
-		div(class="menuTitleSearchContainer" ng-class="data.open ? 'showMenuContainer' : ''")
-			i(class="material-icons iconMenu" ng-click="data.openMenu()") menu
-			div(class="title" ) {{data.titleNavigation}}
-			i(class="material-icons iconSearch") search
-
-		div(class="sideNavMenuContainer" ng-if="data.open" ng-class="data.open ? 'showMenuContainer' : ''") 
-			div(class="sideNav" ng-class="data.open ? 'showMenuContainer' : ''")
-				div(class="upSideNav")
-					div(class="pictureSideNavContainer" style="background-image:url({{data.user.photo}}); background-size: cover;")
-					div(class="nameEmailContainer")
-						div(class="nameMenu") {{data.user.name}} {{data.user.lastname}}
-						div(class="emailMenu") {{data.user.email}}
-				md-divider
-				div(class="downSideNav")
-					ul
-						li
-							a(href="/Dashboard")
-								i(class="material-icons") home
-								div(class="menu-item-sidenav") Dashboard
-						li
-							a
-								i(class="material-icons") perm_media
-								div(class="menu-item-sidenav") Recursos
-						li(ng-if="data.front.user.teacher")
-							a(href="/Register/Course")
-								i(class="material-icons") add_box
-								div(class="menu-item-sidenav") Registrar curso
-						li
-							a
-								i(class="material-icons") list
-								div(class="menu-item-sidenav") Listado de cursos
-						li
-							a(href="/MyProfile")
-								i(class="material-icons") person
-								div(class="menu-item-sidenav") Perfil
-						md-divider
-						li(class="lastItemSideNav")
-							a(href="/Logout")
-								div(class="menu-item-sidenav") Cerrar sesión
-			div(class="backContainer" ng-click="data.closeMenu()" ng-class="data.open ? 'showMenuContainer' : ''")
 	
 block body
 	section(class="viewsContainer")
 		section(class="view" id="dashboard" ng-if="data.views.dashboard.active",ng-class="data.views.dashboard.active ? 'fadeInFromTop' : ''")
 			div(ng-controller="dashboard")
-				div(class="courses col-md-12 row")
-					h1 Listas 
-					div(ng-if='data.front.shows.elements.length > 0')
-						div(ng-repeat='element in data.front.shows.elements')
-							div {{element.name}}
-							br
+				div(class="listShows col-md-12 row")
+					div(class='titList container')
+						h1 Listas 
+						div(class='closeSes')
+							a(href="/Logout")
+								div(class="menu-item-sidenav") Cerrar sesión
+					div(class='containerList')
+						div(ng-if='data.front.shows.elements.length > 0')
+						div(ng-repeat='element in data.front.shows.elements' class='col-md-4')
+							md-card(md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watc)
+								md-card-title
+									md-card-title-tex(class='topCard')
+										div(class="md-headline titS") {{element.name}}
+										p(ng-bind-html='element.summary | limitTo: 200') 
+											span(ng-if='element.summary.length > 199')
+										div(class='generes')
+											div(class='titleGe') Generos:
+											ul(class='listGe')
+												li(ng-repeat='gen in element.genres' class='gen' ng-if='!$last') 
+													span {{gen}},
+												li(ng-repeat='gen in element.genres' class='gen' ng-if='$last') 
+													span {{gen}}
+									md-card-title-media
+										div(class="md-media-lg card-media photo")
+											img(ng-src='{{element.image.medium}}')
+								md-card-actions(layout="row" layout-align="end center" class='container')
+									div(class='col-md-4')
+										md-button(class="md-icon-button buttonFav" aria-label="Favorite" ng-if='false')
+											i(class="material-icons heartNo") favorite_border
+										md-button(class="md-icon-button buttonFav" aria-label="Favorite" )
+											i(class="material-icons heart") favorite
+									div(class='col-md-4 dataS') Premier: {{element.premiered}}
+									div(class='col-md-4 dataS') Rating: {{element.rating.average}}
