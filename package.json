@@ -36,6 +36,7 @@
     "passport-google-oauth": "^1.0.0",
     "rc": "1.0.1",
     "request": "^2.81.0",
+    "request-promise": "^4.2.1",
     "sails": "^0.12.1",
     "sails-disk": "~0.10.9",
     "sails-mongo": "^0.12.0",

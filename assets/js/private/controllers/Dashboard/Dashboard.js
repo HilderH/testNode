@@ -8,146 +8,17 @@ app.controller("dashboard",["$scope","scopes","$timeout",function($scope,scopes,
 			get:{
 				courses: {
 					submit: function(){
-						io.socket.get("/Find/Courses", function(data){
+						io.socket.get("/Dashboard", function(data){
 
 							if (!data.error) {
+								con
 								$scope.data.front.courses.elements=data.elements;
 								$scope.$digest();
 							}
 						})
-					}
-				},
-				courses_student: {
-					submit: function(){
-						io.socket.get("/Find/Courses/student/enrollment", function(data){
-							if (!data.error) {
-								$scope.data.front.courses.elements=data.elements;
-								console.log(data.elements[2]);
-								$scope.$digest();
-							}
-						})
-					}
-				},
-				courses_active_teacher:{
-					submit: function(){
-						console.log("ffff");
-						io.socket.get("/Find/Corses/Active/Teacher", function(data){
-							if (!data.error) {
-								$scope.data.front.courses_active_teacher.elements=data.elements;
-								console.log("da: "+data.elements.length);
-								//$scope.data.front.get.courses_finish_teacher.submit();
-								$scope.$digest();
-							}else{
-								console.log("qqffff");
-							}
-						});
-					}
-				},
-				courses_progress_teacher:{
-					submit: function(){
-						io.socket.get("/Find/Courses/teacher/progress", function(data){
-							if (!data.error) {
-								$scope.data.front.courses_progress_teacher.elements=data.elements;
-								console.log("da: "+data.elements.length);
-								$scope.$digest();
-							}
-						});
-					}
-				},
-				courses_finish_teacher:{
-					submit: function(){
-						io.socket.get("/Find/Courses/Finish", function(data){
-							if (!data.error) {
-								$scope.data.front.courses_finish_teacher.elements=data.elements;
-								console.log("da: "+data.elements.length);
-								$scope.$digest();
-							}
-						});
-					}
-				},
-				
-				courses_interes: {
-					submit: function(){
-						console.log("dd");
-						io.socket.get("/Find/Courses/student/category", function(data){
-							if (!data.error) {
-								console.log("resp: "+data.elements);
-								$scope.data.front.courses_interes_student.elements=data.elements;
-								$scope.$digest();
-							}
-						})
-					}
-				},
-				courses_actives: {
-					submit: function(){
-						io.socket.get("/Find/Courses/student/active", function(data){
-							if (!data.error) {
-								console.log("resp: "+data.elements);
-								$scope.data.front.courses_active.elements=data.elements;
-								$scope.$digest();
-							}
-						});
-					}
-				},
-				courses_admin_actives: {
-					submit: function(){
-						io.socket.get("/Find/Courses/admin/active", function(data){
-							if (!data.error) {
-								console.log("resp: "+data.elements);
-								$scope.data.front.courses_admin_active.elements=data.elements;
-								$scope.$digest();
-							}
-						});
-					}
-				},
-				courses_progress_admin:{
-					submit: function(){
-						io.socket.get("/Find/Courses/admin/progress", function(data){
-							if (!data.error) {
-								$scope.data.front.courses_progress_admin.elements=data.elements;
-								console.log("da: "+data.elements.length);
-								$scope.$digest();
-							}
-						});
-					}
-				},
-				courses_finish_admin:{
-					submit: function(){
-						io.socket.get("/Find/Courses/admin/finish", function(data){
-							if (!data.error) {
-								$scope.data.front.courses_finish_admin.elements=data.elements;
-								console.log("da: "+data.elements.length);
-								$scope.$digest();
-							}
-						});
-					}
-				},
-				settings: {
-					submit: function(){
-						io.socket.get('/Find/Settings', function(data){
-							if (!data.error) {
-								$scope.data.front.settings.element=data.elements;
-								$scope.$digest();
-							}
-						});
-					}
-				},
-				onesignal:{
-					submit: function(){
-						OneSignal.push(function() {
-					  /* These examples are all valid */
-					      OneSignal.getUserId(function(userId) {
-					        console.log("OneSignal User ID:", userId);
-					        // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316    
-					      	io.socket.post('/Set/IdOnesignal', {onesignal: userId}, function(data){
-					      		if (!data.error) {
-					      		}
-					      	});
-					      });
-					    });
 					}
 				}
-				
+
 			},
 			actions:{
 				openMenu: function($mdMenu, ev){
@@ -158,32 +29,8 @@ app.controller("dashboard",["$scope","scopes","$timeout",function($scope,scopes,
 
 			},
 			user: null,
-			courses:{
+			shows:{
 				elements: []
-			},
-			courses_active_teacher:{
-				elements:[]
-			},
-			courses_progress_teacher:{
-				elements:[]
-			},
-			courses_finish_teacher:{
-				elements:[]
-			},
-			courses_interes_student:{
-				elements:[]
-			},
-			courses_active:{
-				elements:[]
-			},
-			courses_admin_active:{
-				elements:[]
-			},
-			courses_progress_admin:{
-				elements:[]
-			},
-			courses_finish_admin:{
-				elements:[]
 			},
 			settings:{
 				element: null,
@@ -272,14 +119,14 @@ app.controller("dashboard",["$scope","scopes","$timeout",function($scope,scopes,
 					}
 					if ($scope.data.front.user.student){
 						$scope.data.front.get.courses_student.submit();
-						$scope.data.front.get.courses_interes.submit();	
+						$scope.data.front.get.courses_interes.submit();
 						$scope.data.front.get.courses_actives.submit();
 					}
 					if ($scope.data.front.user.teacher) {
-						$scope.data.front.get.courses_active_teacher.submit();	
-						scopes.get("dashboard").data.front.get.courses_progress_teacher.submit();		
+						$scope.data.front.get.courses_active_teacher.submit();
+						scopes.get("dashboard").data.front.get.courses_progress_teacher.submit();
 					}
-					
+
 				$scope.$digest();
 			}
 		});
