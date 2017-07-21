@@ -40,42 +40,47 @@ module.exports = {
 						rp(options).then(function (repos) {
 								if (repos.statusCode == 200) {
 									data.back.shows = repos.body
-									res.json({
-										error: false,
-										data: data.back
-									});
+									// res.json({
+									// 	error: false,
+									// 	data: data.back
+									// });
+									validateFavorites(data.back);
+
+
 
 								}
 				    }).catch(function (err) {
 				        // API call failed...
 				    });
-						
+
 
 					}else{
 						req.session.destroy(function(){sails.sockets.broadcast(req.socket.id,"redirect",{direction:"/"});});
 					}
 				});
 			}catch(error){
-				console.log("Error ViewPublicController -> home: "+error);
+				console.log("Error ViewPrivateController -> home: "+error);
 			}
 			function validateFavorites(data){
+				allShows = data.shows
 				try{
 					var findFavorites = function (show,endResult) {
-						Favorite.findOne( {where: {id: enrollment.period.teacher}} ).exec(function (error, obj){
-
+						Favorite.findOne( {show: show.id} ).exec(function (error, obj){
 							if (obj && !error) {
-								console.log(obj)
+								show.favorite = obj.fav;
+								return endResult(null,show)
 							}else{
-								console.log('No hay nada');
+								return endResult(null,show)
 							}
 
 						});
 					}
-					async.map(data.shows, findFavorites, function iterador(err,results){
-							// return res.json({
-							// 	error: false,
-							// 	elements: results
-							// });
+					async.map(allShows, findFavorites, function iterador(err,results){
+						data.shows = results
+						res.json({
+							error: false,
+							data: data
+						});
 
 					});
 				}catch(error){
@@ -84,95 +89,88 @@ module.exports = {
 			}
 		}
 	},
-	activate_course_view : function(req,res,next){
-		if(!req.isSocket){
-			if(req.session.authenticated){
-				try{
-					var data = {
-						front : req.params.all(),
-						back : {},
-						session : {}
-					};
-					tools.validateUser(req.session.userId,function(error,user){
-						if(!error && user){
-							data.session = user;
-							data.session.settings = req.session.settings;
-							validateCourseData(data);
-						}else{
-							req.session.destroy(function(){res.redirect("/");});
-						}
-					});
-				}catch(error){
-					res.view(500);
-				}
+	save_favorite: function(req, res, next){
+		if(req.isSocket && req.session.authenticated){
+			try{
+				var data={
+					front: req.params.all(),
+					back: {},
+					session: {}
+				};
+				tools.validateUser(req.session.userId,function(error,user){
+					if(!error && user){
+						data.session = user;
+						data.session.settings = req.session.settings;
 
-				function validateCourseData(data){
-					try{
-						Course.find({id:data.front.idCourse}).exec(function(error,courses){
-							if(!error && courses.length > 0){
-								data.back.courses = courses[0];
-								res.view("private/index",{data:{user:data.session}});
-							}else{
-								res.view(404);
-							}
-						});
-					}catch(error){
-						res.view(404);
-					}
-				}
-			}else{
-				req.session.destroy(function(){res.redirect("/");});
-			}
-		}else if(req.isSocket){
-			if(req.session.authenticated){
-				try{
-					var data = {
-						front : req.params.all(),
-						back : {},
-						session : {}
-					};
-					tools.validateUser(req.session.userId,function(error,user){
-						if(!error && user){
-							data.session = user;
-							data.session.settings = req.session.settings;
-							data.back.user = data.session;
-							validateCourseDataViaSocket(data);
-						}else{
-							req.session.destroy(function(){sails.sockets.broadcast(req.socket.id,"redirect",{direction:"/"});});
-						}
-					});
-				}catch(error){
-					console.log("Error ViewPrivateController -> clientsshipmentsPublishedUpdateShipmentSlug: "+error);
-				}
+						data.back.dataToCreate={
+							user: user.id,
+							show: data.front.idShow,
+							fav: data.front.fav,
+							status: true
+						};
+						Favorite.findOne( {where: {show: data.back.dataToCreate.show}} ).exec(function (err, show){
+							if (!err) {
+								if (!show) {
+									Favorite.create(data.back.dataToCreate).exec(function(error, show){
+										if(!error && show){
+											res.json({
+												error: false,
+												content: ['Show guardado como favorito.']
+											});
+										}else{
+											res.json({
+												error: true,
+												content: ['Hemos tenido un problema en el servidor, por favor intente más tarde.']
+											});
+										}
+									});
+								}else{
+									if ( show.fav ) {
+										Favorite.update({show: data.back.dataToCreate.show}, {fav: false}).exec(function afterwards(error, sho){
+											if (!error) {
+												res.json({
+														error: false,
+														content: ['Haz quitado este show de tus favoritos.']
+													});
+											}else{
+												res.json({
+													error: true,
+													content: ['Hemos tenido un problema en el servidor, por favor intente más tarde.']
+												});
+											}
+										});
+									}else{
+										Favorite.update({show: data.back.dataToCreate.show}, {fav: true}).exec(function afterwards(error, sho){
+											if (!error) {
+												res.json({
+														error: false,
+														content: ['Haz quitado este show de tus favoritos.']
+													});
+											}else{
+												res.json({
+													error: true,
+													content: ['Hemos tenido un problema en el servidor, por favor intente más tarde.']
+												});
+											}
+										});
+									}
 
-				function validateCourseDataViaSocket(data){
-					try{
-						Course.find({id:data.front.idCourse}).populate("type").populate("categories").exec(function(error,courses){
-							if(!error && courses.length > 0){
-								data.back.course = courses[0];
-								get_populates();
-							}else{
-								req.session.destroy(function(){sails.sockets.broadcast(req.socket.id,"redirect",{direction:"/"});});
-							}
-						});
-						function get_populates(){
-							CategoryCourse.find({course: data.back.course.id}).populate("category").exec(function(error, categories){
-								if (!error && categories) {
-									data.back.course.categories=categories;
-									res.json(data.back);
 								}
-							});
 
-						}
-					}catch(error){
+							}
+						})
+
+
+					}else{
 						req.session.destroy(function(){sails.sockets.broadcast(req.socket.id,"redirect",{direction:"/"});});
 					}
-				}
-			}else{
-				req.session.destroy(function(){sails.sockets.broadcast(req.socket.id,"redirect",{direction:"/"});});
+				});
+			} catch(error){
+				console.log("Error PrivateController -> add/RemoveFav: "+error);
+
 			}
 		}
-	},
 
+	}
 
 };

@@ -39,6 +39,8 @@ block body
 						div(class='closeSes')
 							a(href="/Logout")
 								div(class="menu-item-sidenav") Cerrar sesión
+					div(class='top' )
+						md-progress-linear( md-mode="indeterminate" ng-if='data.front.loader')
 					div(class='containerList')
 						div(ng-if='data.front.shows.elements.length > 0')
 						div(ng-repeat='element in data.front.shows.elements' class='col-md-4')
@@ -52,17 +54,15 @@ block body
 											div(class='titleGe') Generos:
 											ul(class='listGe')
 												li(ng-repeat='gen in element.genres' class='gen' ng-if='!$last') 
-													span {{gen}},
-												li(ng-repeat='gen in element.genres' class='gen' ng-if='$last') 
 													span {{gen}}
 									md-card-title-media
 										div(class="md-media-lg card-media photo")
 											img(ng-src='{{element.image.medium}}')
 								md-card-actions(layout="row" layout-align="end center" class='container')
 									div(class='col-md-4')
-										md-button(class="md-icon-button buttonFav" aria-label="Favorite" ng-if='false')
+										md-button(class="md-icon-button buttonFav" aria-label="Favorite" ng-if='!element.favorite'  ng-click='data.front.actions.addFavorite(element)')
 											i(class="material-icons heartNo") favorite_border
-										md-button(class="md-icon-button buttonFav" aria-label="Favorite" )
+										md-button(class="md-icon-button buttonFav" aria-label="Favorite" ng-if='element.favorite' ng-click='data.front.actions.addFavorite(element)')
 											i(class="material-icons heart") favorite
 									div(class='col-md-4 dataS') Premier: {{element.premiered}}
 									div(class='col-md-4 dataS') Rating: {{element.rating.average}}

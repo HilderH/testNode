@@ -51,9 +51,9 @@ module.exports.routes = {
     controller: 'PrivateViewsController',
     action: 'dashboard'
   },
-  'GET /Course/Activate/:idCourse':{
+  'POST /save/favorite':{
     controller: "PrivateViewsController",
-    action: "activate_course_view"
+    action: "save_favorite"
   },
   //AUTENTICATHION CONTROLLER
   'GET /Authentication/Login' : {

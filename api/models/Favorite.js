@@ -12,7 +12,7 @@ module.exports = {
  			model: "user"
  		},
     show:{
- 			type: "string"
+ 			type:'integer'
  		},
     fav: {
  			type: "boolean"
