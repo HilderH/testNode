@@ -1,14 +1,9 @@
 
-#testNode
-Test for job in Node.js
-
-Instruccion to deploy.
-
 # Test de trabajo para Node.js
 
 Este proyecto consite basicamente en poder mostrar shows por medio de una rest api y a su vez poder marcarlos como favoritos.
 
-## Getting Started
+## Documentacion
 
 Para proceder en el proyecto debemos seguir los siguientes pasos de manera que pueda estar el proyecto en un corrida exitosa.
 
